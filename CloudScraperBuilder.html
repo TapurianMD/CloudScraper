@@ -1,0 +1,285 @@
+<!-- Copyright © 2016, Xerxes Langerudi. All rights reserved. -->
+
+<!doctype html>
+
+<html>
+<head>
+	<title>CloudScraperBuilder</title>
+</head>
+
+<style>
+
+.canvas
+{
+	float: right;
+}
+
+.menu
+{
+	width: 213px;
+	height: 300px;
+	font: 16px Verdana;
+	float: left;
+}
+
+.header
+{
+	width: 213px;
+	height: 50px;
+	font-size: 20px;
+}
+
+.itemDescription
+{
+	width: 200px;
+	float: left;
+}
+
+.itemHolder
+{
+	width: 80px;
+	float: left;
+}
+
+select
+{
+	width: 140px;
+}
+
+</style>
+
+<body>
+	<form>
+	<div class="menu">
+		<div class="header">
+		CloudScraper Builder
+		</div>
+
+		<div class="itemDescription">
+		Number of floors:
+		</div>
+		<div class="itemHolder">
+			<select name="floorNumbers" id="floorNumbers">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+			</select>
+		</div>
+
+		<div class="itemDescription">
+		Width:
+		</div>
+		<div class="itemHolder">
+			<select name="width" id="width">
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				<option value="21">21</option>
+				<option value="22">22</option>
+				<option value="23">23</option>
+				<option value="24">24</option>
+				<option value="25">25</option>
+				<option value="26">26</option>
+				<option value="27">27</option>
+				<option value="28">28</option>
+				<option value="29">29</option>
+				<option value="30">30</option>
+			</select>
+		</div>
+
+		<div class="itemDescription">
+		Color:
+		</div>
+		<div class="itemHolder">
+			<select name="color" id="color">
+				<option value="Cool">Cool</option>
+				<option value="Hot">Hot</option>
+			</select>
+		</div>
+
+		<div class="itemDescription">
+		Type:
+		</div>
+		<div class="itemHolder">
+			<select name="type" id="type">
+				<option value="Trade Center">Trade Center</option>
+				<option value="Research Center">Research Center</option>
+				<option value="Hospital">Hospital</option>
+				<option value="University">University</option>
+				<option value="Hotel">Hotel</option>
+				<option value="Residential">Residential</option>
+				<option value="Brothel">Brothel</option>
+			</select>
+		</div>
+	</div>
+</form>
+
+<canvas width="653" height="650" class="canvas" id="canvas"></canvas>
+
+<script type="text/javascript">
+
+myCanvasX = 653;
+myCanvasY = 650;
+
+var windowColor;
+var doorColor;
+var wallColor;
+var firstFloorWallColor;
+var bannerColor;
+var bannerTextColor;
+
+var canvas = document.querySelector("#canvas");
+var cx = canvas.getContext("2d");
+
+function setColor(color)
+{
+	if (color == "Cool")
+	{
+		windowColor = "turquoise";
+		doorColor = "turquoise";
+		wallColor = "cyan";
+		firstFloorWallColor = "grey";
+		bannerColor = "lavender";
+		bannerTextColor = "grey";
+	}
+	else
+	{
+		windowColor = "turquoise";
+		doorColor = "turquoise";
+		wallColor = "pink";
+		firstFloorWallColor = "fuchsia";
+		bannerColor = "lavender";
+		bannerTextColor = "grey";
+	}
+}
+
+function drawRoof(x, y, width, height, type)
+{
+	cx.fillStyle = bannerColor;
+	cx.fillRect(x, y, width, height);
+	cx.strokeStyle = "white";
+	cx.strokeRect(x, y, width, height);
+
+	type = "Cloud " + type;
+
+	// Determine font size that can fit on the wall size
+	var fontPX = width / type.length * 1.5
+
+	// Max font size
+	fontPX = fontPX > 30? 30 : fontPX;
+
+	// Banner text
+	cx.fillStyle = bannerTextColor;
+	cx.font = fontPX + "px Verdana";
+	cx.fillText(type, x + 10, y + 30);
+}
+
+function drawFloor(x, y, width, height)
+{
+	cx.fillStyle = wallColor;
+	cx.fillRect(x, y, width, height);
+	cx.strokeStyle = "white";
+	cx.strokeRect(x, y, width, height);
+
+	// Window
+	cx.fillStyle = windowColor;
+
+	var windowWidth = width / 2 - 6;
+
+	cx.fillRect(x + 4, y, width / 2 - 6, height / 2);
+
+	cx.fillRect(x + 4 + windowWidth + 4, y, windowWidth, height / 2);
+}
+
+function drawFirstFloor(x, y, width, height, floorNumber)
+{
+	cx.fillStyle = firstFloorWallColor;
+	cx.fillRect(x, y, width, height);
+
+	// Determine door height and width based on building size
+	var doorHeight = height / 1.5 + floorNumber * 1;
+	var doorWidth = 25 + (floorNumber * 5);
+
+	// Door
+	cx.fillStyle = doorColor;
+	cx.fillRect(x + 10, y + height - doorHeight, doorWidth, doorHeight);
+}
+
+
+function drawBuilding(x, y, floorNumber, type, color)
+{
+	// Clear clouds
+	cx.fillStyle = "white";
+	cx.fillRect(0, 0, myCanvasX, myCanvasY);
+
+	var foundationY = 550;
+
+
+	// Max width allowed
+	x = x > 300? 300 : x;
+
+	// min width allowed
+	x = x < 100? 100 : x;
+
+	// Max height per floor allowed
+	y = y > 50? 50 : y;
+
+	// Min height per floor allowed
+	y = y < 40? 40 : y;
+
+	// Max floors allowed
+	floorNumber = floorNumber > 10? 10 : floorNumber;
+
+	// Min floors allowed
+	floorNumber = floorNumber < 1? 1 : floorNumber;
+
+	width = x;
+	height = y;
+	
+	x = (myCanvasX / 2) - (x / 2)
+
+	setColor(color);
+
+	drawFirstFloor(x, foundationY, width, height, floorNumber)
+
+	for (i = 0; i < floorNumber; i++)
+	{
+		drawFloor(x, foundationY - y - (i * y), width, height)
+	}
+
+	drawRoof(x, foundationY - y - (i * y), width, height, type);
+}
+
+
+var form = document.querySelector("form");
+
+form.addEventListener("change", function()
+{
+	var width = form.elements.width.value * 10;
+	var floorHeight = 50;
+	var floorNumbers = form.elements.floorNumbers.value
+	var color = form.elements.color.value
+	var type = form.elements.type.value
+
+	drawBuilding(width, floorHeight, floorNumbers, type, color);
+});
+
+</script>
+
+</body>
+</html>
