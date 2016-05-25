@@ -126,6 +126,33 @@ select
 				<option value="Brothel">Brothel</option>
 			</select>
 		</div>
+
+		<div class="itemDescription">
+		Show:
+		</div>
+		<div class="itemHolder">
+			<select name="show" id="show">
+				<option value="All">All</option>
+				<option value="Plumping">Plumping</option>
+				<option value="Wiring">Wiring</option>
+				<option value="Lamps">Lamps</option>
+				<option value="Structure">Structure</option>
+			</select>
+		</div>
+
+		<div class="itemDescription">
+		Security:
+		</div>
+		<div class="itemHolder">
+			<select name="security" id="security">
+				<option value="Optimism">Optimism</option>
+				<option value="Special forces">Special forces</option>
+				<option value="Tank">Tank</option>
+				<option value="Helicopter">Helicopter</option>
+				<option value="CCTV">CCTV</option>
+				<option value="Paranoia">Paranoia</option>
+			</select>
+		</div>
 	</div>
 </form>
 
@@ -189,21 +216,67 @@ function drawRoof(x, y, width, height, type)
 	cx.fillText(type, x + 10, y + 30);
 }
 
-function drawFloor(x, y, width, height)
+function drawFloor(x, y, width, height, show)
 {
-	cx.fillStyle = wallColor;
-	cx.fillRect(x, y, width, height);
-	cx.strokeStyle = "white";
-	cx.strokeRect(x, y, width, height);
+	switch (show)
+	{
+		case "All":
+			cx.fillStyle = wallColor;
+			cx.fillRect(x, y, width, height);
+			cx.strokeStyle = "white";
+			cx.strokeRect(x, y, width, height);
 
-	// Window
-	cx.fillStyle = windowColor;
+			// Window
+			cx.fillStyle = windowColor;
 
-	var windowWidth = width / 2 - 6;
+			var windowWidth = width / 2 - 6;
 
-	cx.fillRect(x + 4, y, width / 2 - 6, height / 2);
+			cx.fillRect(x + 4, y, width / 2 - 6, height / 2);
 
-	cx.fillRect(x + 4 + windowWidth + 4, y, windowWidth, height / 2);
+			cx.fillRect(x + 4 + windowWidth + 4, y, windowWidth, height / 2);
+		break;
+		case "Plumping":
+			cx.fillStyle = "blue";
+
+			// Upward
+			cx.fillRect(x + 5, y, 5, height);
+
+
+			// Crosswise
+			cx.fillRect(x, y + height, width, 5);
+		break;
+		case "Wiring":
+			cx.fillStyle = "red";
+
+			// Upward
+			cx.fillRect(x + 2, y, 2, height);
+
+
+			// Crosswise
+			cx.fillRect(x, y + height, width, 2);
+		break;
+		case "Lamps":
+			cx.fillStyle = "gold";
+
+			// Roof
+			for (myI = x; myI < (x + width); myI = myI + 40)
+			{
+				cx.fillRect(myI, y, 8, 2);			
+			}
+		break;
+		case "Structure":
+			cx.fillStyle = "grey";
+
+			// Pillar 1
+			cx.fillRect(x, y, 20, height);
+
+			// Pillar 2
+			cx.fillRect(x + width - 20, y, 20, height);
+
+			// Crosswise
+			cx.fillRect(x, y, width, 10);
+		break;
+	}
 }
 
 function drawFirstFloor(x, y, width, height, floorNumber)
@@ -221,14 +294,16 @@ function drawFirstFloor(x, y, width, height, floorNumber)
 }
 
 
-function drawBuilding(x, y, floorNumber, type, color)
+function drawBuilding(foundationY, x, y, floorNumber, type, color, show)
 {
 	// Clear clouds
 	cx.fillStyle = "white";
 	cx.fillRect(0, 0, myCanvasX, myCanvasY);
 
-	var foundationY = 550;
 
+	// Max width allowed
+	cx.fillStyle = "white";
+	cx.fillRect(0, 0, myCanvasX, myCanvasY);
 
 	// Max width allowed
 	x = x > 300? 300 : x;
@@ -259,10 +334,209 @@ function drawBuilding(x, y, floorNumber, type, color)
 
 	for (i = 0; i < floorNumber; i++)
 	{
-		drawFloor(x, foundationY - y - (i * y), width, height)
+		drawFloor(x, foundationY - y - (i * y), width, height, show)
 	}
 
 	drawRoof(x, foundationY - y - (i * y), width, height, type);
+}
+
+
+function drawTank()
+{
+	// Firearms
+	cx.beginPath();
+	cx.moveTo(70, 510);
+	cx.lineTo(70, 500);
+	cx.lineTo(50, 500);
+	cx.lineTo(80, 500);
+
+	cx.stroke();
+
+	// Weapon mounter
+	cx.beginPath();
+	cx.moveTo(50, 520);
+	cx.lineTo(60, 510);
+	cx.lineTo(80, 510);
+	cx.lineTo(90, 520);
+
+	cx.stroke();
+
+	// Body
+	cx.beginPath();
+	cx.moveTo(15, 540);
+	cx.lineTo(40, 520);
+	cx.lineTo(100, 520);
+	cx.lineTo(125, 540);
+	cx.lineTo(100, 560);
+	cx.lineTo(40, 560);
+	cx.lineTo(15, 540);
+
+	cx.stroke();
+
+	// 1st wheel
+	cx.beginPath();
+	cx.arc(30, 580, 10, 0, 7);
+	cx.fill();
+
+	// 2nd wheel
+	cx.beginPath();
+	cx.arc(55, 580, 10, 0, 7);
+	cx.fill();
+
+	// 3rd wheel
+	cx.beginPath();
+	cx.arc(80, 580, 10, 0, 7);
+	cx.fill();
+
+	// 4th wheel
+	cx.beginPath();
+	cx.arc(105, 580, 10, 0, 7);
+	cx.fill();
+
+	// Front chain
+	cx.beginPath();
+	cx.arc(25, 580, 12, 1.8, 4.5);
+	cx.stroke();
+
+	cx.lineTo(113, 568);
+	cx.stroke();
+
+	// End chain
+	cx.beginPath();
+	cx.arc(110, 580, 12, 5, 7.6);
+	cx.stroke();
+
+	cx.lineTo(22, 592);
+	cx.stroke();
+}
+
+
+var y = 65;
+var rotator = 1;
+var backRotorCounter = 1;
+
+function drawHelicopter()
+{
+	// Clear clouds
+	cx.fillStyle = "white";
+	cx.fillRect(490, y - 1, 141, 102);
+
+	y == 65 ? y++ : y--;
+
+	// Rotor
+	cx.beginPath();
+	cx.moveTo(490, y);
+	cx.lineTo(610, y);
+
+	rotator = rotator == 1? 0 : 1;
+
+	rotator == 1? cx.stroke() : 0;
+
+
+	// Rotor holder
+	cx.beginPath();
+	cx.moveTo(550, y + 10);
+	cx.lineTo(550, y);
+	cx.stroke();
+
+	// Body
+	cx.beginPath();
+	cx.arc(550, y + 35, 25, 0, 7);
+	cx.stroke();
+
+	// Back rotor
+	cx.beginPath();
+	cx.fillStyle = "black";
+	cx.moveTo(620, y + 35);
+	cx.arc(620, y + 35, 10, 0 + backRotorCounter, 0.2 + backRotorCounter);
+	cx.arc(620, y + 35, 10, 3 + backRotorCounter, 3.2 + backRotorCounter);
+	cx.fill();
+
+	backRotorCounter = backRotorCounter > 7? 0 : ++backRotorCounter;
+
+	// Back rotor holder
+	cx.beginPath();
+	cx.moveTo(575, y + 35);
+	cx.lineTo(620, y + 35);
+	cx.stroke();
+
+	// Ordnance holder
+	cx.beginPath();
+	cx.moveTo(550, y + 60);
+	cx.lineTo(550, y + 85);
+	cx.stroke();
+
+	// Ordnance
+	cx.beginPath();
+	cx.moveTo(570, y + 60);
+	cx.lineTo(520, y + 100);
+	cx.stroke();
+}
+
+function drawCCTV(y, width, floorHeight, floorNumbers)
+{
+	var x = (myCanvasX / 2) - (width / 2);
+	var buildingHeight = floorHeight + floorHeight * floorNumbers;
+
+	var CCTVX = y - buildingHeight;
+
+	// Right
+	cx.beginPath();
+	cx.moveTo(x + width, CCTVX);
+	cx.lineTo(x + width + 10, CCTVX);
+	cx.lineTo(x + width + 10, CCTVX + 10);
+	cx.stroke();
+
+	cx.beginPath();
+	cx.arc(x + width + 10, CCTVX + 10, 7, 6.3, 3);
+	cx.fill();
+
+	// Left
+	cx.beginPath();
+	cx.moveTo(x, CCTVX);
+	cx.lineTo(x - 10, CCTVX);
+	cx.lineTo(x - 10, CCTVX + 10);
+	cx.stroke();
+
+	cx.beginPath();
+	cx.arc(x - 10, CCTVX + 10, 7, 6.3, 3);
+	cx.fill();
+}
+
+var airPatrol;
+
+function drawSecurity(security, y, width, floorHeight, floorNumbers)
+{
+	cx.strokeStyle = "black";
+	cx.fillStyle = "black";
+
+	if (security == "Optimism")
+	{
+		// No security
+	}
+	if (security == "Special forces" || security == "Paranoia")
+	{
+		// Hidden in undisclosed place
+	}
+	if (security == "Tank" || security == "Paranoia")
+	{
+		// Patroling
+		drawTank();
+	}
+	if (security == "Helicopter" || security == "Paranoia")
+	{
+		// Patroling
+		airPatrol = setInterval(drawHelicopter, 50);
+	}
+	else
+	{
+		clearInterval(airPatrol);
+	}
+	if (security == "CCTV" || security == "Paranoia")
+	{
+		// Roof mounted
+		drawCCTV(y, width, floorHeight, floorNumbers);
+	}
 }
 
 
@@ -272,11 +546,15 @@ form.addEventListener("change", function()
 {
 	var width = form.elements.width.value * 10;
 	var floorHeight = 50;
-	var floorNumbers = form.elements.floorNumbers.value
-	var color = form.elements.color.value
-	var type = form.elements.type.value
+	var floorNumbers = form.elements.floorNumbers.value;
+	var color = form.elements.color.value;
+	var type = form.elements.type.value;
+	var show = form.elements.show.value;
+	var security = form.elements.security.value;
 
-	drawBuilding(width, floorHeight, floorNumbers, type, color);
+	drawBuilding(550, width, floorHeight, floorNumbers, type, color, show);
+
+	drawSecurity(security, 550, width, floorHeight, floorNumbers);
 });
 
 </script>
