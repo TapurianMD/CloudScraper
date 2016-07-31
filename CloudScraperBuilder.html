@@ -341,72 +341,72 @@ function drawBuilding(foundationY, x, y, floorNumber, type, color, show)
 }
 
 
-function drawTank()
+function drawTank(x, y)
 {
 	// Firearms
 	cx.beginPath();
-	cx.moveTo(70, 510);
-	cx.lineTo(70, 500);
-	cx.lineTo(50, 500);
-	cx.lineTo(80, 500);
+	cx.moveTo(x + 55, y + 10);
+	cx.lineTo(x + 55, y);
+	cx.lineTo(x + 25, y);
+	cx.lineTo(x + 65, y);
 
 	cx.stroke();
 
 	// Weapon mounter
 	cx.beginPath();
-	cx.moveTo(50, 520);
-	cx.lineTo(60, 510);
-	cx.lineTo(80, 510);
-	cx.lineTo(90, 520);
+	cx.moveTo(x + 35, y + 20);
+	cx.lineTo(x + 45, y + 10);
+	cx.lineTo(x + 65, y + 10);
+	cx.lineTo(x + 75, y + 20);
 
 	cx.stroke();
 
 	// Body
 	cx.beginPath();
-	cx.moveTo(15, 540);
-	cx.lineTo(40, 520);
-	cx.lineTo(100, 520);
-	cx.lineTo(125, 540);
-	cx.lineTo(100, 560);
-	cx.lineTo(40, 560);
-	cx.lineTo(15, 540);
+	cx.moveTo(x, y + 40);
+	cx.lineTo(x + 25, y + 20);
+	cx.lineTo(x + 85, y + 20);
+	cx.lineTo(x + 110, y + 40);
+	cx.lineTo(x + 95, y + 60);
+	cx.lineTo(x + 15, y + 60);
+	cx.lineTo(x, y + 40);
 
 	cx.stroke();
 
 	// 1st wheel
 	cx.beginPath();
-	cx.arc(30, 580, 10, 0, 7);
+	cx.arc(x + 15, y + 75, 10, 0, 7);
 	cx.fill();
 
 	// 2nd wheel
 	cx.beginPath();
-	cx.arc(55, 580, 10, 0, 7);
+	cx.arc(x + 40, y + 75, 10, 0, 7);
 	cx.fill();
 
 	// 3rd wheel
 	cx.beginPath();
-	cx.arc(80, 580, 10, 0, 7);
+	cx.arc(x + 65, y + 75, 10, 0, 7);
 	cx.fill();
 
 	// 4th wheel
 	cx.beginPath();
-	cx.arc(105, 580, 10, 0, 7);
+	cx.arc(x + 90, y + 75, 10, 0, 7);
 	cx.fill();
 
 	// Front chain
 	cx.beginPath();
-	cx.arc(25, 580, 12, 1.8, 4.5);
+	cx.arc(x + 10, y + 75, 12, 1.8, 4.5);
 	cx.stroke();
 
-	cx.lineTo(113, 568);
+	cx.lineTo(x + 98, y + 63);
 	cx.stroke();
 
 	// End chain
 	cx.beginPath();
-	cx.arc(110, 580, 12, 5, 7.6);
+	cx.arc(x + 95, y + 75, 12, 5, 7.6);
 	cx.stroke();
 
-	cx.lineTo(22, 592);
+	cx.lineTo(x + 7, y + 87);
 	cx.stroke();
 }
 
@@ -421,7 +421,7 @@ function drawHelicopter()
 	cx.fillStyle = "white";
 	cx.fillRect(490, y - 1, 141, 102);
 
-	y == 65 ? y++ : y--;
+	y == 65 ? y = y + 2 : y = y - 2;
 
 	// Rotor
 	cx.beginPath();
@@ -521,7 +521,7 @@ function drawSecurity(security, y, width, floorHeight, floorNumbers)
 	if (security == "Tank" || security == "Paranoia")
 	{
 		// Patroling
-		drawTank();
+		drawTank(15, 500);
 	}
 	if (security == "Helicopter" || security == "Paranoia")
 	{
@@ -561,3 +561,4 @@ form.addEventListener("change", function()
 
 </body>
 </html>
+
