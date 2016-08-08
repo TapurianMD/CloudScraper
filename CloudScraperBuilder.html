@@ -16,7 +16,7 @@
 
 .menu
 {
-	width: 213px;
+	width: 276px;
 	height: 300px;
 	font: 16px Verdana;
 	float: left;
@@ -24,20 +24,20 @@
 
 .header
 {
-	width: 213px;
+	width: 276px;
 	height: 50px;
-	font-size: 20px;
+	font-size: 25px;
 }
 
 .itemDescription
 {
-	width: 200px;
+	width: 276px;
 	float: left;
 }
 
 .itemHolder
 {
-	width: 80px;
+	width: 276px;
 	float: left;
 }
 
@@ -121,6 +121,7 @@ select
 				<option value="Research Center">Research Center</option>
 				<option value="Hospital">Hospital</option>
 				<option value="University">University</option>
+				<option value="Central Command">Central Command</option>
 				<option value="Hotel">Hotel</option>
 				<option value="Residential">Residential</option>
 				<option value="Brothel">Brothel</option>
@@ -343,91 +344,119 @@ function drawBuilding(foundationY, x, y, floorNumber, type, color, show)
 
 function drawTank(x, y)
 {
+	var size = 1;
+
 	// Firearms
 	cx.beginPath();
-	cx.moveTo(x + 55, y + 10);
-	cx.lineTo(x + 55, y);
-	cx.lineTo(x + 25, y);
-	cx.lineTo(x + 65, y);
+	cx.moveTo(x + 55 * size, y + 10 * size);
+	cx.lineTo(x + 55 * size, y);
+	cx.lineTo(x + 25 * size, y);
+	cx.lineTo(x + 65 * size, y);
 
 	cx.stroke();
 
 	// Weapon mounter
 	cx.beginPath();
-	cx.moveTo(x + 35, y + 20);
-	cx.lineTo(x + 45, y + 10);
-	cx.lineTo(x + 65, y + 10);
-	cx.lineTo(x + 75, y + 20);
+	cx.moveTo(x + 35 * size, y + 20 * size);
+	cx.lineTo(x + 45 * size, y + 10 * size);
+	cx.lineTo(x + 65 * size, y + 10 * size);
+	cx.lineTo(x + 75 * size, y + 20 * size);
 
 	cx.stroke();
 
 	// Body
 	cx.beginPath();
-	cx.moveTo(x, y + 40);
-	cx.lineTo(x + 25, y + 20);
-	cx.lineTo(x + 85, y + 20);
-	cx.lineTo(x + 110, y + 40);
-	cx.lineTo(x + 95, y + 60);
-	cx.lineTo(x + 15, y + 60);
-	cx.lineTo(x, y + 40);
+	cx.moveTo(x, y + 40 * size);
+	cx.lineTo(x + 25 * size, y + 20 * size);
+	cx.lineTo(x + 85 * size, y + 20 * size);
+	cx.lineTo(x + 110 * size, y + 40 * size);
+	cx.lineTo(x + 95 * size, y + 60 * size);
+	cx.lineTo(x + 15 * size, y + 60 * size);
+	cx.lineTo(x, y + 40 * size);
 
 	cx.stroke();
 
 	// 1st wheel
 	cx.beginPath();
-	cx.arc(x + 15, y + 75, 10, 0, 7);
+	cx.arc(x + 15 * size, y + 75 * size, 10 * size, 0, 7);
 	cx.fill();
 
 	// 2nd wheel
 	cx.beginPath();
-	cx.arc(x + 40, y + 75, 10, 0, 7);
+	cx.arc(x + 40 * size, y + 75 * size, 10 * size, 0, 7);
 	cx.fill();
 
 	// 3rd wheel
 	cx.beginPath();
-	cx.arc(x + 65, y + 75, 10, 0, 7);
+	cx.arc(x + 65 * size, y + 75 * size, 10 * size, 0, 7);
 	cx.fill();
 
 	// 4th wheel
 	cx.beginPath();
-	cx.arc(x + 90, y + 75, 10, 0, 7);
+	cx.arc(x + 90 * size, y + 75 * size, 10 * size, 0, 7);
 	cx.fill();
 
 	// Front chain
 	cx.beginPath();
-	cx.arc(x + 10, y + 75, 12, 1.8, 4.5);
+	cx.arc(x + 10 * size, y + 75 * size, 12 * size, 1.8, 4.5);
 	cx.stroke();
 
-	cx.lineTo(x + 98, y + 63);
+	cx.lineTo(x + 98 * size, y + 63 * size);
 	cx.stroke();
 
 	// End chain
 	cx.beginPath();
-	cx.arc(x + 95, y + 75, 12, 5, 7.6);
+	cx.arc(x + 95 * size, y + 75 * size, 12 * size, 5, 7.6);
 	cx.stroke();
 
-	cx.lineTo(x + 7, y + 87);
+	cx.lineTo(x + 7 * size, y + 87 * size);
 	cx.stroke();
 }
 
 
-var y = 65;
+var inXPrevious;
+var inYPrevious
+
+var shakeSize = 2;
+
 var rotator = 1;
 var backRotorCounter = 1;
 
-function drawHelicopter()
+function drawHelicopter(inX, inY)
 {
+	var size = 1;
+
+	// When parameters change
+	if (inXPrevious != inX || inYPrevious != inY)
+	{
+		inXPrevious = inX;
+		inYPrevious = inY;
+	
+		x = inX;
+		y = inY;
+	}
+
 	// Clear clouds
 	cx.fillStyle = "white";
-	cx.fillRect(490, y - 1, 141, 102);
 
-	y == 65 ? y = y + 2 : y = y - 2;
+	// X: Rotor
+	// Y: Rotor - 1
+	// X: Empiric
+	// Y: Empiric
+	cx.fillRect(	(x + 60 - (size * 60)),
+			(y + 35 - (35 * size)) - 1,
+			140 * size,
+			102 * size);
+
+	// Shaking effect
+	y == inY ? y = y + shakeSize : y = y - shakeSize;
 
 	// Rotor
 	cx.beginPath();
-	cx.moveTo(490, y);
-	cx.lineTo(610, y);
+	cx.moveTo(x + 60 - (size * 60), y + 35 - (35 * size));
+	cx.lineTo(x + 60 + (size * 60), y + 35 - (35 * size));
 
+	// Rotation effect
 	rotator = rotator == 1? 0 : 1;
 
 	rotator == 1? cx.stroke() : 0;
@@ -435,41 +464,41 @@ function drawHelicopter()
 
 	// Rotor holder
 	cx.beginPath();
-	cx.moveTo(550, y + 10);
-	cx.lineTo(550, y);
+	cx.moveTo(x + 60, y + 35 - (25 * size));
+	cx.lineTo(x + 60, y + 35 - (35 * size));
 	cx.stroke();
 
 	// Body
 	cx.beginPath();
-	cx.arc(550, y + 35, 25, 0, 7);
+	cx.arc(x + 60, y + 35, 25 * size, 0, 7);
 	cx.stroke();
 
 	// Back rotor
 	cx.beginPath();
 	cx.fillStyle = "black";
-	cx.moveTo(620, y + 35);
-	cx.arc(620, y + 35, 10, 0 + backRotorCounter, 0.2 + backRotorCounter);
-	cx.arc(620, y + 35, 10, 3 + backRotorCounter, 3.2 + backRotorCounter);
+	cx.moveTo(x + 60 + 70 * size, y + 35);
+	cx.arc(x + 60 + 70 * size, y + 35, 10 * size, 0 + backRotorCounter, 0.2 + backRotorCounter);
+	cx.arc(x + 60 + 70 * size, y + 35, 10 * size, 3 + backRotorCounter, 3.2 + backRotorCounter);
 	cx.fill();
 
 	backRotorCounter = backRotorCounter > 7? 0 : ++backRotorCounter;
 
 	// Back rotor holder
 	cx.beginPath();
-	cx.moveTo(575, y + 35);
-	cx.lineTo(620, y + 35);
+	cx.moveTo((x + 60 + 25 * size), y + 35);
+	cx.lineTo(x + 60 + 70 * size, y + 35);
 	cx.stroke();
 
 	// Ordnance holder
 	cx.beginPath();
-	cx.moveTo(550, y + 60);
-	cx.lineTo(550, y + 85);
+	cx.moveTo(x + 60, y + 35 + 25 * size);
+	cx.lineTo(x + 60, y + 35 + 50 * size);
 	cx.stroke();
 
 	// Ordnance
 	cx.beginPath();
-	cx.moveTo(570, y + 60);
-	cx.lineTo(520, y + 100);
+	cx.moveTo(x + 60 + 20 * size, y + 35 + 25 * size);
+	cx.lineTo(x + 60 - 30 * size, y + 35 + 65 * size);
 	cx.stroke();
 }
 
@@ -525,8 +554,14 @@ function drawSecurity(security, y, width, floorHeight, floorNumbers)
 	}
 	if (security == "Helicopter" || security == "Paranoia")
 	{
+		// Might already be set
+		clearInterval(airPatrol);
+
 		// Patroling
-		airPatrol = setInterval(drawHelicopter, 50);
+		airPatrol = setInterval(function()
+		{
+			drawHelicopter(490, 65);
+		}, 50);
 	}
 	else
 	{
