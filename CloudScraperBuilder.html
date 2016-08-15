@@ -14,7 +14,7 @@
 	float: right;
 }
 
-.menu
+#menu
 {
 	width: 276px;
 	height: 300px;
@@ -27,12 +27,14 @@
 	width: 276px;
 	height: 50px;
 	font-size: 25px;
+	color: blue;
 }
 
 .itemDescription
 {
 	width: 276px;
 	float: left;
+	color: fuchsia;
 }
 
 .itemHolder
@@ -50,7 +52,7 @@ select
 
 <body>
 	<form>
-	<div class="menu">
+	<div id="menu">
 		<div class="header">
 		CloudScraper Builder
 		</div>
@@ -109,6 +111,11 @@ select
 			<select name="color" id="color">
 				<option value="Cool">Cool</option>
 				<option value="Hot">Hot</option>
+				<option value="Bright">Bright</option>
+				<option value="Dark">Dark</option>
+				<option value="Tasty">Tasty</option>
+				<option value="Gold">Gold</option>
+				<option value="Orange">Orange</option>
 			</select>
 		</div>
 
@@ -157,48 +164,237 @@ select
 	</div>
 </form>
 
-<canvas width="653" height="650" class="canvas" id="canvas"></canvas>
+<canvas width="970" height="650" class="canvas" id="canvas"></canvas>
 
 <script type="text/javascript">
 
-myCanvasX = 653;
-myCanvasY = 650;
+// Building
+var buildingWindowColor;
+var buildingDoorColor;
+var buildingWallColor;
+var buildingFirstFloorWallColor;
+var buildingBannerColor;
+var buildingBannerTextColor;
 
-var windowColor;
-var doorColor;
-var wallColor;
-var firstFloorWallColor;
-var bannerColor;
-var bannerTextColor;
+
+// Helicopter
+var helicopterRotorColor;
+var helicopterRotorHolderColor;
+var helicopterBodyColor;
+var helicopterWindowColor;
+var helicopterBackRotorColor;
+var helicopterBackRotorHolderColor;
+var helicopterOrdnanceHolderColor;
+var helicopterOrdnanceColor;
+
+
+// Tank
+var tankFirearmsColor;
+var tankWeaponMounterColor;
+var tankBodyColor;
+var tankWheelColor;
+var tankChainColor;
 
 var canvas = document.querySelector("#canvas");
 var cx = canvas.getContext("2d");
+
+canvas.width = screen.width - 401;
+
+var bigENOUGH = true;
+
+if (screen.width < 1041)
+{
+	alert("This App works only on screens with a width larger than 1041px.");
+
+	bigENOUGH = false;
+
+	var menu = document.querySelector("#menu");
+
+	menu.style.display = "none";
+}
+else if (screen.width < 1366)
+{
+	alert("This App works best on screens with a larger size.");
+}
+
+myCanvasX = canvas.width;
+myCanvasY = canvas.height;
 
 function setColor(color)
 {
 	if (color == "Cool")
 	{
-		windowColor = "turquoise";
-		doorColor = "turquoise";
-		wallColor = "cyan";
-		firstFloorWallColor = "grey";
-		bannerColor = "lavender";
-		bannerTextColor = "grey";
+		buildingWindowColor = "cyan";
+		buildingDoorColor = "cyan";
+		buildingWallColor = "grey";
+		buildingFirstFloorWallColor = "grey";
+		buildingBannerColor = "grey";
+		buildingBannerTextColor = "cyan";
+
+		helicopterRotorColor = "grey";
+		helicopterRotorHolderColor = "grey";
+		helicopterBodyColor = "grey";
+		helicopterWindowColor = "cyan";
+		helicopterBackRotorColor = "grey";
+		helicopterbackRotorHolderColor = "grey";
+		helicopterOrdnanceHolderColor = "grey";
+		helicopterOrdnanceColor = "grey";
+
+		tankFirearmsColor = "grey";
+		tankWeaponMounterColor = "grey";
+		tankBodyColor = "grey";
+		tankWheelColor = "cyan";
+		tankChainColor = "grey";
 	}
-	else
+	else if (color == "Hot")
 	{
-		windowColor = "turquoise";
-		doorColor = "turquoise";
-		wallColor = "pink";
-		firstFloorWallColor = "fuchsia";
-		bannerColor = "lavender";
-		bannerTextColor = "grey";
+		buildingWindowColor = "pink";
+		buildingDoorColor = "pink";
+		buildingWallColor = "grey";
+		buildingFirstFloorWallColor = "grey";
+		buildingBannerColor = "grey";
+		buildingBannerTextColor = "pink";
+
+		helicopterRotorColor = "grey";
+		helicopterRotorHolderColor = "grey";
+		helicopterBodyColor = "grey";
+		helicopterWindowColor = "pink";
+		helicopterBackRotorColor = "grey";
+		helicopterbackRotorHolderColor = "grey";
+		helicopterOrdnanceHolderColor = "grey";
+		helicopterOrdnanceColor = "grey";
+
+		tankFirearmsColor = "grey";
+		tankWeaponMounterColor = "grey";
+		tankBodyColor = "grey";
+		tankWheelColor = "pink";
+		tankChainColor = "grey";
+	}
+	else if (color == "Bright")
+	{
+		buildingWindowColor = "lavender";
+		buildingDoorColor = "lavender";
+		buildingWallColor = "lightblue";
+		buildingFirstFloorWallColor = "lightblue";
+		buildingBannerColor = "lightblue";
+		buildingBannerTextColor = "lavender";
+
+		helicopterRotorColor = "lightblue";
+		helicopterRotorHolderColor = "lightblue";
+		helicopterBodyColor = "lightblue";
+		helicopterWindowColor = "lavender";
+		helicopterBackRotorColor = "lightblue";
+		helicopterbackRotorHolderColor = "lightblue";
+		helicopterOrdnanceHolderColor = "lightblue";
+		helicopterOrdnanceColor = "lightblue";
+
+		tankFirearmsColor = "lightblue";
+		tankWeaponMounterColor = "lightblue";
+		tankBodyColor = "lightblue";
+		tankWheelColor = "lavender";
+		tankChainColor = "lightblue";
+	}
+	else if (color == "Dark")
+	{
+		buildingWindowColor = "black";
+		buildingDoorColor = "black";
+		buildingWallColor = "grey";
+		buildingFirstFloorWallColor = "grey";
+		buildingBannerColor = "grey";
+		buildingBannerTextColor = "black";
+
+		helicopterRotorColor = "grey";
+		helicopterRotorHolderColor = "grey";
+		helicopterBodyColor = "grey";
+		helicopterWindowColor = "black";
+		helicopterBackRotorColor = "grey";
+		helicopterbackRotorHolderColor = "grey";
+		helicopterOrdnanceHolderColor = "grey";
+		helicopterOrdnanceColor = "grey";
+
+		tankFirearmsColor = "grey";
+		tankWeaponMounterColor = "grey";
+		tankBodyColor = "grey";
+		tankWheelColor = "black";
+		tankChainColor = "grey";
+	}
+	else if (color == "Tasty")
+	{
+		buildingWindowColor = "fuchsia";
+		buildingDoorColor = "fuchsia";
+		buildingWallColor = "purple";
+		buildingFirstFloorWallColor = "purple";
+		buildingBannerColor = "purple";
+		buildingBannerTextColor = "fuchsia";
+
+		helicopterRotorColor = "purple";
+		helicopterRotorHolderColor = "purple";
+		helicopterBodyColor = "purple";
+		helicopterWindowColor = "fuchsia";
+		helicopterBackRotorColor = "purple";
+		helicopterbackRotorHolderColor = "purple";
+		helicopterOrdnanceHolderColor = "purple";
+		helicopterOrdnanceColor = "purple";
+
+		tankFirearmsColor = "purple";
+		tankWeaponMounterColor = "purple";
+		tankBodyColor = "purple";
+		tankWheelColor = "fuchsia";
+		tankChainColor = "purple";
+	}
+	else if (color == "Gold")
+	{
+		buildingWindowColor = "gold";
+		buildingDoorColor = "gold";
+		buildingWallColor = "red";
+		buildingFirstFloorWallColor = "red";
+		buildingBannerColor = "red";
+		buildingBannerTextColor = "gold";
+
+		helicopterRotorColor = "red";
+		helicopterRotorHolderColor = "red";
+		helicopterBodyColor = "red";
+		helicopterWindowColor = "gold";
+		helicopterBackRotorColor = "red";
+		helicopterbackRotorHolderColor = "red";
+		helicopterOrdnanceHolderColor = "red";
+		helicopterOrdnanceColor = "red";
+
+		tankFirearmsColor = "red";
+		tankWeaponMounterColor = "red";
+		tankBodyColor = "red";
+		tankWheelColor = "gold";
+		tankChainColor = "red";
+	}
+	else if (color == "Orange")
+	{
+		buildingWindowColor = "Orange";
+		buildingDoorColor = "Orange";
+		buildingWallColor = "darkblue";
+		buildingFirstFloorWallColor = "darkblue";
+		buildingBannerColor = "darkblue";
+		buildingBannerTextColor = "Orange";
+
+		helicopterRotorColor = "darkblue";
+		helicopterRotorHolderColor = "darkblue";
+		helicopterBodyColor = "darkblue";
+		helicopterWindowColor = "Orange";
+		helicopterBackRotorColor = "darkblue";
+		helicopterbackRotorHolderColor = "darkblue";
+		helicopterOrdnanceHolderColor = "darkblue";
+		helicopterOrdnanceColor = "darkblue";
+
+		tankFirearmsColor = "darkblue";
+		tankWeaponMounterColor = "darkblue";
+		tankBodyColor = "darkblue";
+		tankWheelColor = "Orange";
+		tankChainColor = "darkblue";
 	}
 }
 
 function drawRoof(x, y, width, height, type)
 {
-	cx.fillStyle = bannerColor;
+	cx.fillStyle = buildingBannerColor;
 	cx.fillRect(x, y, width, height);
 	cx.strokeStyle = "white";
 	cx.strokeRect(x, y, width, height);
@@ -212,7 +408,7 @@ function drawRoof(x, y, width, height, type)
 	fontPX = fontPX > 30? 30 : fontPX;
 
 	// Banner text
-	cx.fillStyle = bannerTextColor;
+	cx.fillStyle = buildingBannerTextColor;
 	cx.font = fontPX + "px Verdana";
 	cx.fillText(type, x + 10, y + 30);
 }
@@ -222,13 +418,13 @@ function drawFloor(x, y, width, height, show)
 	switch (show)
 	{
 		case "All":
-			cx.fillStyle = wallColor;
+			cx.fillStyle = buildingWallColor;
 			cx.fillRect(x, y, width, height);
 			cx.strokeStyle = "white";
 			cx.strokeRect(x, y, width, height);
 
 			// Window
-			cx.fillStyle = windowColor;
+			cx.fillStyle = buildingWindowColor;
 
 			var windowWidth = width / 2 - 6;
 
@@ -282,7 +478,7 @@ function drawFloor(x, y, width, height, show)
 
 function drawFirstFloor(x, y, width, height, floorNumber)
 {
-	cx.fillStyle = firstFloorWallColor;
+	cx.fillStyle = buildingFirstFloorWallColor;
 	cx.fillRect(x, y, width, height);
 
 	// Determine door height and width based on building size
@@ -290,12 +486,12 @@ function drawFirstFloor(x, y, width, height, floorNumber)
 	var doorWidth = 25 + (floorNumber * 5);
 
 	// Door
-	cx.fillStyle = doorColor;
+	cx.fillStyle = buildingDoorColor;
 	cx.fillRect(x + 10, y + height - doorHeight, doorWidth, doorHeight);
 }
 
 
-function drawBuilding(foundationY, x, y, floorNumber, type, color, show)
+function drawBuilding(foundationX, foundationY, x, y, floorNumber, type, color, show)
 {
 	// Clear clouds
 	cx.fillStyle = "white";
@@ -327,25 +523,21 @@ function drawBuilding(foundationY, x, y, floorNumber, type, color, show)
 	width = x;
 	height = y;
 	
-	x = (myCanvasX / 2) - (x / 2)
-
 	setColor(color);
 
-	drawFirstFloor(x, foundationY, width, height, floorNumber)
+	drawFirstFloor(foundationX, foundationY, width, height, floorNumber)
 
 	for (i = 0; i < floorNumber; i++)
 	{
-		drawFloor(x, foundationY - y - (i * y), width, height, show)
+		drawFloor(foundationX, foundationY - y - (i * y), width, height, show)
 	}
 
-	drawRoof(x, foundationY - y - (i * y), width, height, type);
+	drawRoof(foundationX, foundationY - y - (i * y), width, height, type);
 }
 
 
-function drawTank(x, y)
+function drawTank(x, y, size)
 {
-	var size = 1;
-
 	// Firearms
 	cx.beginPath();
 	cx.moveTo(x + 55 * size, y + 10 * size);
@@ -353,6 +545,7 @@ function drawTank(x, y)
 	cx.lineTo(x + 25 * size, y);
 	cx.lineTo(x + 65 * size, y);
 
+	cx.strokeStyle = tankFirearmsColor;
 	cx.stroke();
 
 	// Weapon mounter
@@ -362,6 +555,7 @@ function drawTank(x, y)
 	cx.lineTo(x + 65 * size, y + 10 * size);
 	cx.lineTo(x + 75 * size, y + 20 * size);
 
+	cx.strokeStyle = tankWeaponMounterColor;
 	cx.stroke();
 
 	// Body
@@ -374,11 +568,14 @@ function drawTank(x, y)
 	cx.lineTo(x + 15 * size, y + 60 * size);
 	cx.lineTo(x, y + 40 * size);
 
-	cx.stroke();
+	cx.fillStyle = tankBodyColor;
+	cx.fill();
 
 	// 1st wheel
 	cx.beginPath();
 	cx.arc(x + 15 * size, y + 75 * size, 10 * size, 0, 7);
+
+	cx.fillStyle = tankWheelColor;
 	cx.fill();
 
 	// 2nd wheel
@@ -399,6 +596,8 @@ function drawTank(x, y)
 	// Front chain
 	cx.beginPath();
 	cx.arc(x + 10 * size, y + 75 * size, 12 * size, 1.8, 4.5);
+
+	cx.strokeStyle = tankChainColor;
 	cx.stroke();
 
 	cx.lineTo(x + 98 * size, y + 63 * size);
@@ -413,29 +612,16 @@ function drawTank(x, y)
 	cx.stroke();
 }
 
-
-var inXPrevious;
-var inYPrevious
-
-var shakeSize = 2;
-
-var rotator = 1;
-var backRotorCounter = 1;
-
-function drawHelicopter(inX, inY)
+var helicopter = {
+x: 0,
+y: 0,
+inXPrevious: 0,
+inYPrevious: 0,
+shakeSize: 2,
+rotator: 1,
+backRotorCounter: 1,
+draw: function(inX, inY, size) 
 {
-	var size = 1;
-
-	// When parameters change
-	if (inXPrevious != inX || inYPrevious != inY)
-	{
-		inXPrevious = inX;
-		inYPrevious = inY;
-	
-		x = inX;
-		y = inY;
-	}
-
 	// Clear clouds
 	cx.fillStyle = "white";
 
@@ -443,68 +629,93 @@ function drawHelicopter(inX, inY)
 	// Y: Rotor - 1
 	// X: Empiric
 	// Y: Empiric
-	cx.fillRect(	(x + 60 - (size * 60)),
-			(y + 35 - (35 * size)) - 1,
-			140 * size,
-			102 * size);
+	cx.fillRect(	(this.inXPrevious + 60 - (size * 60)),
+			(this.inYPrevious + 35 - (35 * size)) - 1,
+			142 * size,
+			104 * size);
+
+	// When parameters change
+	if (this.inXPrevious != inX || this.inYPrevious != inY)
+	{
+		this.inXPrevious = inX;
+		this.inYPrevious = inY;
+	
+		this.x = inX;
+		this.y = inY;
+	}
 
 	// Shaking effect
-	y == inY ? y = y + shakeSize : y = y - shakeSize;
+	this.y == inY ? this.y = this.y + this.shakeSize : this.y = this.y - this.shakeSize;
 
 	// Rotor
 	cx.beginPath();
-	cx.moveTo(x + 60 - (size * 60), y + 35 - (35 * size));
-	cx.lineTo(x + 60 + (size * 60), y + 35 - (35 * size));
+	cx.moveTo(this.x + 60 - (size * 60), this.y + 35 - (35 * size));
+	cx.lineTo(this.x + 60 + (size * 60), this.y + 35 - (35 * size));
 
 	// Rotation effect
-	rotator = rotator == 1? 0 : 1;
+	this.rotator = this.rotator == 1? 0 : 1;
 
-	rotator == 1? cx.stroke() : 0;
+	cx.strokeStyle = helicopterRotorColor;
+	this.rotator == 1? cx.stroke() : 0;
 
 
 	// Rotor holder
 	cx.beginPath();
-	cx.moveTo(x + 60, y + 35 - (25 * size));
-	cx.lineTo(x + 60, y + 35 - (35 * size));
+	cx.moveTo(this.x + 60, this.y + 35 - (25 * size));
+	cx.lineTo(this.x + 60, this.y + 35 - (35 * size));
+	cx.strokeStyle = helicopterRotorHolderColor;
 	cx.stroke();
 
 	// Body
 	cx.beginPath();
-	cx.arc(x + 60, y + 35, 25 * size, 0, 7);
-	cx.stroke();
+	cx.arc(this.x + 60, this.y + 35, 25 * size, 0, 7);
+	cx.fillStyle = helicopterBodyColor;
+	cx.fill();
+
+	// Window
+	cx.beginPath();
+	cx.arc(this.x + 60, this.y + 35, 22 * size, 3, 5);
+	cx.fillStyle = helicopterWindowColor;
+	cx.fill();
 
 	// Back rotor
 	cx.beginPath();
-	cx.fillStyle = "black";
-	cx.moveTo(x + 60 + 70 * size, y + 35);
-	cx.arc(x + 60 + 70 * size, y + 35, 10 * size, 0 + backRotorCounter, 0.2 + backRotorCounter);
-	cx.arc(x + 60 + 70 * size, y + 35, 10 * size, 3 + backRotorCounter, 3.2 + backRotorCounter);
+	cx.moveTo(this.x + 60 + 70 * size, this.y + 35);
+	cx.arc(this.x + 60 + 70 * size, this.y + 35, 10 * size, 0 + this.backRotorCounter, 0.2 + this.backRotorCounter);
+	cx.arc(this.x + 60 + 70 * size, this.y + 35, 10 * size, 3 + this.backRotorCounter, 3.2 + this.backRotorCounter);
+	cx.fillStyle = helicopterBackRotorColor;
 	cx.fill();
 
-	backRotorCounter = backRotorCounter > 7? 0 : ++backRotorCounter;
+	this.backRotorCounter = this.backRotorCounter > 7? 0 : ++this.backRotorCounter;
 
 	// Back rotor holder
 	cx.beginPath();
-	cx.moveTo((x + 60 + 25 * size), y + 35);
-	cx.lineTo(x + 60 + 70 * size, y + 35);
+	cx.moveTo((this.x + 60 + 25 * size), this.y + 35);
+	cx.lineTo(this.x + 60 + 70 * size, this.y + 35);
+	cx.strokeStyle = helicopterBackRotorColor;
 	cx.stroke();
 
 	// Ordnance holder
 	cx.beginPath();
-	cx.moveTo(x + 60, y + 35 + 25 * size);
-	cx.lineTo(x + 60, y + 35 + 50 * size);
+	cx.moveTo(this.x + 60, this.y + 35 + 25 * size);
+	cx.lineTo(this.x + 60, this.y + 35 + 50 * size);
+	cx.strokeStyle = helicopterOrdnanceHolderColor;
 	cx.stroke();
 
 	// Ordnance
 	cx.beginPath();
-	cx.moveTo(x + 60 + 20 * size, y + 35 + 25 * size);
-	cx.lineTo(x + 60 - 30 * size, y + 35 + 65 * size);
+	cx.moveTo(this.x + 60 + 20 * size, this.y + 35 + 25 * size);
+	cx.lineTo(this.x + 60 - 30 * size, this.y + 35 + 65 * size);
+	cx.strokeStyle = helicopterOrdnanceColor;
 	cx.stroke();
 }
+}
 
-function drawCCTV(y, width, floorHeight, floorNumbers)
+function drawCCTV(x, y, width, floorHeight, floorNumbers)
 {
-	var x = (myCanvasX / 2) - (width / 2);
+	cx.fillStyle = "black";
+	cx.strokeStyle = "black";
+
 	var buildingHeight = floorHeight + floorHeight * floorNumbers;
 
 	var CCTVX = y - buildingHeight;
@@ -534,7 +745,7 @@ function drawCCTV(y, width, floorHeight, floorNumbers)
 
 var airPatrol;
 
-function drawSecurity(security, y, width, floorHeight, floorNumbers)
+function drawSecurity(security, x, y, width, floorHeight, floorNumbers)
 {
 	cx.strokeStyle = "black";
 	cx.fillStyle = "black";
@@ -550,17 +761,97 @@ function drawSecurity(security, y, width, floorHeight, floorNumbers)
 	if (security == "Tank" || security == "Paranoia")
 	{
 		// Patroling
-		drawTank(15, 500);
+		if (myCanvasX > 640)
+		{
+			drawTank(x - 160, 500, 1);
+		}
+
+		if (myCanvasX > 800)
+		{
+			drawTank(x - 320, 500, 1);
+		}
+
+		if (myCanvasX > 960)
+		{
+			drawTank(x - 480, 500, 1);
+		}
+
+		if (myCanvasX > 1120)
+		{
+			drawTank(x - 640, 500, 1);
+		}
+
+		if (myCanvasX > 1280)
+		{
+			drawTank(x - 800, 500, 1);
+		}
 	}
 	if (security == "Helicopter" || security == "Paranoia")
 	{
 		// Might already be set
 		clearInterval(airPatrol);
 
+		var helicopterY = 250;
+
+		var myHelicopter = Object.create(helicopter)
+
+		// Patroling
+		if (myCanvasX > 640)
+		{
+			var myHelicopter2 = Object.create(helicopter)
+		}
+
+		if (myCanvasX > 800)
+		{
+			var myHelicopter3 = Object.create(helicopter)
+		}
+
+		if (myCanvasX > 960)
+		{
+			var myHelicopter4 = Object.create(helicopter)
+		}
+
+		if (myCanvasX > 1120)
+		{
+			var myHelicopter5 = Object.create(helicopter)
+		}
+
+		if (myCanvasX > 1280)
+		{
+			var myHelicopter6 = Object.create(helicopter)
+		}
 		// Patroling
 		airPatrol = setInterval(function()
 		{
-			drawHelicopter(490, 65);
+			helicopterY > 65? helicopterY = helicopterY - 10 : helicopterY;
+
+			myHelicopter.draw(x + 320, helicopterY, 1);
+
+			if (myCanvasX > 640)
+			{
+				myHelicopter2.draw(x - 160, helicopterY + 50, 1);
+			}
+
+			if (myCanvasX > 800)
+			{
+				myHelicopter3.draw(x - 320, helicopterY, 1);
+			}
+
+			if (myCanvasX > 960)
+			{
+				myHelicopter4.draw(x - 480, helicopterY, 1);
+			}
+
+			if (myCanvasX > 1120)
+			{
+				myHelicopter5.draw(x - 640, helicopterY, 1);
+			}
+
+			if (myCanvasX > 1280)
+			{
+				myHelicopter6.draw(x - 800, helicopterY, 1);
+			}
+
 		}, 50);
 	}
 	else
@@ -570,7 +861,7 @@ function drawSecurity(security, y, width, floorHeight, floorNumbers)
 	if (security == "CCTV" || security == "Paranoia")
 	{
 		// Roof mounted
-		drawCCTV(y, width, floorHeight, floorNumbers);
+		drawCCTV(x, y, width, floorHeight, floorNumbers);
 	}
 }
 
@@ -579,17 +870,22 @@ var form = document.querySelector("form");
 
 form.addEventListener("change", function()
 {
-	var width = form.elements.width.value * 10;
-	var floorHeight = 50;
-	var floorNumbers = form.elements.floorNumbers.value;
-	var color = form.elements.color.value;
-	var type = form.elements.type.value;
-	var show = form.elements.show.value;
-	var security = form.elements.security.value;
+	if (bigENOUGH)
+	{
+		var width = form.elements.width.value * 10;
+		var floorHeight = 50;
+		var floorNumbers = form.elements.floorNumbers.value;
+		var color = form.elements.color.value;
+		var type = form.elements.type.value;
+		var show = form.elements.show.value;
+		var security = form.elements.security.value;
 
-	drawBuilding(550, width, floorHeight, floorNumbers, type, color, show);
+		var x = myCanvasX - 475;
 
-	drawSecurity(security, 550, width, floorHeight, floorNumbers);
+		drawBuilding(x, 550, width, floorHeight, floorNumbers, type, color, show);
+
+		drawSecurity(security, x, 550, width, floorHeight, floorNumbers);
+	}
 });
 
 </script>
