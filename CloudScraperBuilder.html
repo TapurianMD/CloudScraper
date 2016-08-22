@@ -9,6 +9,13 @@
 
 <style>
 
+html, body
+{
+	text-align: left;
+	color: white;
+	height: 95%;
+}
+
 .canvas
 {
 	float: right;
@@ -17,9 +24,10 @@
 #menu
 {
 	width: 276px;
-	height: 300px;
+	height: 100%;
 	font: 16px Verdana;
 	float: left;
+	background-color: white;
 }
 
 .header
@@ -27,14 +35,14 @@
 	width: 276px;
 	height: 50px;
 	font-size: 25px;
-	color: blue;
+	color: grey;
 }
 
 .itemDescription
 {
 	width: 276px;
 	float: left;
-	color: fuchsia;
+	color: grey;
 }
 
 .itemHolder
@@ -46,123 +54,130 @@
 select
 {
 	width: 140px;
+	border: 2px solid turquoise;
+	color: grey;
 }
 
 </style>
 
 <body>
-	<form>
 	<div id="menu">
-		<div class="header">
-		CloudScraper Builder
-		</div>
+		<form>
+			<div class="header">
+			CloudScraper Builder
+			</div>
 
-		<div class="itemDescription">
-		Number of floors:
-		</div>
-		<div class="itemHolder">
-			<select name="floorNumbers" id="floorNumbers">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-				<option value="10">10</option>
-			</select>
-		</div>
+			<div class="itemDescription" id="itemDescription1">
+			Number of floors:
+			</div>
+			<div class="itemHolder" id="itemHolder1">
+				<select name="floorNumbers" id="floorNumbers">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select>
+			</div>
 
-		<div class="itemDescription">
-		Width:
-		</div>
-		<div class="itemHolder">
-			<select name="width" id="width">
-				<option value="10">10</option>
-				<option value="11">11</option>
-				<option value="12">12</option>
-				<option value="13">13</option>
-				<option value="14">14</option>
-				<option value="15">15</option>
-				<option value="16">16</option>
-				<option value="17">17</option>
-				<option value="18">18</option>
-				<option value="19">19</option>
-				<option value="20">20</option>
-				<option value="21">21</option>
-				<option value="22">22</option>
-				<option value="23">23</option>
-				<option value="24">24</option>
-				<option value="25">25</option>
-				<option value="26">26</option>
-				<option value="27">27</option>
-				<option value="28">28</option>
-				<option value="29">29</option>
-				<option value="30">30</option>
-			</select>
-		</div>
+			<div class="itemDescription" id="itemDescription2">
+			Width:
+			</div>
+			<div class="itemHolder" id="itemHolder2">
+				<select name="width" id="width">
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+					<option value="24">24</option>
+					<option value="25">25</option>
+					<option value="26">26</option>
+					<option value="27">27</option>
+					<option value="28">28</option>
+					<option value="29">29</option>
+					<option value="30">30</option>
+				</select>
+			</div>
 
-		<div class="itemDescription">
-		Color:
-		</div>
-		<div class="itemHolder">
-			<select name="color" id="color">
-				<option value="Cool">Cool</option>
-				<option value="Hot">Hot</option>
-				<option value="Bright">Bright</option>
-				<option value="Dark">Dark</option>
-				<option value="Tasty">Tasty</option>
-				<option value="Gold">Gold</option>
-				<option value="Orange">Orange</option>
-			</select>
-		</div>
+			<div class="itemDescription" id="itemDescription3">
+			Color:
+			</div>
+			<div class="itemHolder" id="itemHolder3">
+				<select name="color" id="color">
+					<option value="Cool">Cool</option>
+					<option value="Cooler">Cooler</option>
+					<option value="Wet">Wet</option>
+					<option value="Wetter">Wetter</option>
+					<option value="Hot">Hot</option>
+					<option value="Hotter">Hotter</option>
+					<option value="Bright">Bright</option>
+					<option value="Dark">Dark</option>
+					<option value="Tasty">Tasty</option>
+					<option value="Gold">Gold</option>
+					<option value="Orange">Orange</option>
+					<option value="Liquid">Liquid</option>
+				</select>
+			</div>
 
-		<div class="itemDescription">
-		Type:
-		</div>
-		<div class="itemHolder">
-			<select name="type" id="type">
-				<option value="Trade Center">Trade Center</option>
-				<option value="Research Center">Research Center</option>
-				<option value="Hospital">Hospital</option>
-				<option value="University">University</option>
-				<option value="Central Command">Central Command</option>
-				<option value="Hotel">Hotel</option>
-				<option value="Residential">Residential</option>
-				<option value="Brothel">Brothel</option>
-			</select>
-		</div>
+			<div class="itemDescription" id="itemDescription4">
+			Type:
+			</div>
+			<div class="itemHolder" id="itemHolder4">
+				<select name="type" id="type">
+					<option value="Trade Center">Trade Center</option>
+					<option value="Research Center">Research Center</option>
+					<option value="Hospital">Hospital</option>
+					<option value="University">University</option>
+					<option value="Central Command">Central Command</option>
+					<option value="Hotel">Hotel</option>
+					<option value="Residential">Residential</option>
+					<option value="Brothel">Brothel</option>
+				</select>
+			</div>
 
-		<div class="itemDescription">
-		Show:
-		</div>
-		<div class="itemHolder">
-			<select name="show" id="show">
-				<option value="All">All</option>
-				<option value="Plumping">Plumping</option>
-				<option value="Wiring">Wiring</option>
-				<option value="Lamps">Lamps</option>
-				<option value="Structure">Structure</option>
-			</select>
-		</div>
+			<div class="itemDescription" id="itemDescription5">
+			Show:
+			</div>
+			<div class="itemHolder" id="itemHolder5">
+				<select name="show" id="show">
+					<option value="All">All</option>
+					<option value="Plumping">Plumping</option>
+					<option value="Wiring">Wiring</option>
+					<option value="Lamps">Lamps</option>
+					<option value="Structure">Structure</option>
+				</select>
+			</div>
 
-		<div class="itemDescription">
-		Security:
-		</div>
-		<div class="itemHolder">
-			<select name="security" id="security">
-				<option value="Optimism">Optimism</option>
-				<option value="Special forces">Special forces</option>
-				<option value="Tank">Tank</option>
-				<option value="Helicopter">Helicopter</option>
-				<option value="CCTV">CCTV</option>
-				<option value="Paranoia">Paranoia</option>
-			</select>
-		</div>
+			<div class="itemDescription" id="itemDescription6">
+			Security:
+			</div>
+			<div class="itemHolder" id="itemHolder6">
+				<select name="security" id="security">
+					<option value="Optimism">Optimism</option>
+					<option value="Special forces">Special forces</option>
+					<option value="Tank">Tank</option>
+					<option value="Helicopter">Helicopter</option>
+					<option value="CCTV">CCTV</option>
+					<option value="Paranoia">Paranoia</option>
+				</select>
+			</div>
+		</form>
 	</div>
-</form>
 
 <canvas width="970" height="650" class="canvas" id="canvas"></canvas>
 
@@ -195,6 +210,18 @@ var tankBodyColor;
 var tankWheelColor;
 var tankChainColor;
 
+
+// CCTV
+var cameraColor;
+var cameraHolderColor;
+
+// Menu
+var menuBackgroundColor;
+var menuHeaderColor;
+var menuItemDescriptionColor;
+var menuItemOptionColor;
+var menuItemOptionBorderColor;
+
 var canvas = document.querySelector("#canvas");
 var cx = canvas.getContext("2d");
 
@@ -222,182 +249,457 @@ myCanvasY = canvas.height;
 
 function setColor(color)
 {
-	if (color == "Cool")
+	switch(color)
 	{
-		buildingWindowColor = "cyan";
-		buildingDoorColor = "cyan";
-		buildingWallColor = "grey";
-		buildingFirstFloorWallColor = "grey";
-		buildingBannerColor = "grey";
-		buildingBannerTextColor = "cyan";
+		case "Cool":
+			buildingWindowColor = "cyan";
+			buildingDoorColor = "cyan";
+			buildingWallColor = "grey";
+			buildingFirstFloorWallColor = "grey";
+			buildingBannerColor = "grey";
+			buildingBannerTextColor = "cyan";
 
-		helicopterRotorColor = "grey";
-		helicopterRotorHolderColor = "grey";
-		helicopterBodyColor = "grey";
-		helicopterWindowColor = "cyan";
-		helicopterBackRotorColor = "grey";
-		helicopterbackRotorHolderColor = "grey";
-		helicopterOrdnanceHolderColor = "grey";
-		helicopterOrdnanceColor = "grey";
+			helicopterRotorColor = "grey";
+			helicopterRotorHolderColor = "grey";
+			helicopterBodyColor = "grey";
+			helicopterWindowColor = "cyan";
+			helicopterBackRotorColor = "grey";
+			helicopterbackRotorHolderColor = "grey";
+			helicopterOrdnanceHolderColor = "grey";
+			helicopterOrdnanceColor = "grey";
 
-		tankFirearmsColor = "grey";
-		tankWeaponMounterColor = "grey";
-		tankBodyColor = "grey";
-		tankWheelColor = "cyan";
-		tankChainColor = "grey";
+			tankFirearmsColor = "grey";
+			tankWeaponMounterColor = "grey";
+			tankBodyColor = "grey";
+			tankWheelColor = "cyan";
+			tankChainColor = "grey";
+
+			cameraColor = "cyan";
+			cameraHolderColor = "grey";
+
+			menuBackgroundColor = "white";
+			menuHeaderColor = "grey";
+			menuItemDescriptionColor = "grey";
+			menuItemOptionColor = "grey";
+			menuItemOptionBorderColor = "cyan";
+			break;
+		case "Cooler":
+			buildingWindowColor = "turquoise";
+			buildingDoorColor = "turquoise";
+			buildingWallColor = "grey";
+			buildingFirstFloorWallColor = "grey";
+			buildingBannerColor = "grey";
+			buildingBannerTextColor = "turquoise";
+
+			helicopterRotorColor = "grey";
+			helicopterRotorHolderColor = "grey";
+			helicopterBodyColor = "grey";
+			helicopterWindowColor = "turquoise";
+			helicopterBackRotorColor = "grey";
+			helicopterbackRotorHolderColor = "grey";
+			helicopterOrdnanceHolderColor = "grey";
+			helicopterOrdnanceColor = "grey";
+
+			tankFirearmsColor = "grey";
+			tankWeaponMounterColor = "grey";
+			tankBodyColor = "#777777";
+			tankWheelColor = "#555555";
+			tankChainColor = "grey";
+
+			cameraColor = "turquoise";
+			cameraHolderColor = "grey";
+
+			menuBackgroundColor = "white";
+			menuHeaderColor = "grey";
+			menuItemDescriptionColor = "grey";
+			menuItemOptionColor = "grey";
+			menuItemOptionBorderColor = "turquoise";
+			break;
+		case "Wet":
+			buildingWindowColor = "blue";
+			buildingDoorColor = "blue";
+			buildingWallColor = "grey";
+			buildingFirstFloorWallColor = "grey";
+			buildingBannerColor = "grey";
+			buildingBannerTextColor = "blue";
+
+			helicopterRotorColor = "grey";
+			helicopterRotorHolderColor = "grey";
+			helicopterBodyColor = "grey";
+			helicopterWindowColor = "blue";
+			helicopterBackRotorColor = "grey";
+			helicopterbackRotorHolderColor = "grey";
+			helicopterOrdnanceHolderColor = "grey";
+			helicopterOrdnanceColor = "grey";
+
+			tankFirearmsColor = "grey";
+			tankWeaponMounterColor = "grey";
+			tankBodyColor = "grey";
+			tankWheelColor = "blue";
+			tankChainColor = "grey";
+
+			cameraColor = "blue";
+			cameraHolderColor = "grey";
+
+			menuBackgroundColor = "white";
+			menuHeaderColor = "grey";
+			menuItemDescriptionColor = "grey";
+			menuItemOptionColor = "grey";
+			menuItemOptionBorderColor = "blue";
+			break;
+		case "Wetter":
+			buildingWindowColor = "darkblue";
+			buildingDoorColor = "darkblue";
+			buildingWallColor = "grey";
+			buildingFirstFloorWallColor = "grey";
+			buildingBannerColor = "grey";
+			buildingBannerTextColor = "darkblue";
+
+			helicopterRotorColor = "grey";
+			helicopterRotorHolderColor = "grey";
+			helicopterBodyColor = "grey";
+			helicopterWindowColor = "darkblue";
+			helicopterBackRotorColor = "grey";
+			helicopterbackRotorHolderColor = "grey";
+			helicopterOrdnanceHolderColor = "grey";
+			helicopterOrdnanceColor = "grey";
+
+			tankFirearmsColor = "grey";
+			tankWeaponMounterColor = "grey";
+			tankBodyColor = "grey";
+			tankWheelColor = "darkblue";
+			tankChainColor = "grey";
+
+			cameraColor = "darkblue";
+			cameraHolderColor = "grey";
+
+			menuBackgroundColor = "white";
+			menuHeaderColor = "darkblue";
+			menuItemDescriptionColor = "darkblue";
+			menuItemOptionColor = "grey";
+			menuItemOptionBorderColor = "grey";
+			break;
+		case "Hot":
+			buildingWindowColor = "pink";
+			buildingDoorColor = "pink";
+			buildingWallColor = "grey";
+			buildingFirstFloorWallColor = "grey";
+			buildingBannerColor = "grey";
+			buildingBannerTextColor = "pink";
+
+			helicopterRotorColor = "grey";
+			helicopterRotorHolderColor = "grey";
+			helicopterBodyColor = "grey";
+			helicopterWindowColor = "pink";
+			helicopterBackRotorColor = "grey";
+			helicopterbackRotorHolderColor = "grey";
+			helicopterOrdnanceHolderColor = "grey";
+			helicopterOrdnanceColor = "grey";
+
+			tankFirearmsColor = "grey";
+			tankWeaponMounterColor = "grey";
+			tankBodyColor = "grey";
+			tankWheelColor = "pink";
+			tankChainColor = "grey";
+
+			cameraColor = "pink";
+			cameraHolderColor = "grey";
+
+			menuBackgroundColor = "white";
+			menuHeaderColor = "grey";
+			menuItemDescriptionColor = "grey";
+			menuItemOptionColor = "grey";
+			menuItemOptionBorderColor = "pink";
+			break;
+		case "Hotter":
+			buildingWindowColor = "fuchsia";
+			buildingDoorColor = "fuchsia";
+			buildingWallColor = "grey";
+			buildingFirstFloorWallColor = "grey";
+			buildingBannerColor = "grey";
+			buildingBannerTextColor = "fuchsia";
+
+			helicopterRotorColor = "grey";
+			helicopterRotorHolderColor = "grey";
+			helicopterBodyColor = "grey";
+			helicopterWindowColor = "fuchsia";
+			helicopterBackRotorColor = "grey";
+			helicopterbackRotorHolderColor = "grey";
+			helicopterOrdnanceHolderColor = "grey";
+			helicopterOrdnanceColor = "grey";
+
+			tankFirearmsColor = "grey";
+			tankWeaponMounterColor = "grey";
+			tankBodyColor = "grey";
+			tankWheelColor = "fuchsia";
+			tankChainColor = "grey";
+
+			cameraColor = "fuchsia";
+			cameraHolderColor = "grey";
+
+			menuBackgroundColor = "white";
+			menuHeaderColor = "grey";
+			menuItemDescriptionColor = "grey";
+			menuItemOptionColor = "grey";
+			menuItemOptionBorderColor = "fuchsia";
+			break;
+		case "Bright":
+			buildingWindowColor = "lavender";
+			buildingDoorColor = "lavender";
+			buildingWallColor = "lightblue";
+			buildingFirstFloorWallColor = "lightblue";
+			buildingBannerColor = "lightblue";
+			buildingBannerTextColor = "lavender";
+
+			helicopterRotorColor = "lightblue";
+			helicopterRotorHolderColor = "lightblue";
+			helicopterBodyColor = "lightblue";
+			helicopterWindowColor = "lavender";
+			helicopterBackRotorColor = "lightblue";
+			helicopterbackRotorHolderColor = "lightblue";
+			helicopterOrdnanceHolderColor = "lightblue";
+			helicopterOrdnanceColor = "lightblue";
+
+			tankFirearmsColor = "lightblue";
+			tankWeaponMounterColor = "lightblue";
+			tankBodyColor = "lightblue";
+			tankWheelColor = "lavender";
+			tankChainColor = "lightblue";
+
+			cameraColor = "lavender";
+			cameraHolderColor = "lightblue";
+
+			menuBackgroundColor = "white";
+			menuHeaderColor = "lightblue";
+			menuItemDescriptionColor = "lightblue";
+			menuItemOptionColor = "lightblue";
+			menuItemOptionBorderColor = "lavender";
+			break;
+		case "Dark":
+			buildingWindowColor = "black";
+			buildingDoorColor = "black";
+			buildingWallColor = "grey";
+			buildingFirstFloorWallColor = "grey";
+			buildingBannerColor = "grey";
+			buildingBannerTextColor = "black";
+
+			helicopterRotorColor = "grey";
+			helicopterRotorHolderColor = "grey";
+			helicopterBodyColor = "grey";
+			helicopterWindowColor = "black";
+			helicopterBackRotorColor = "grey";
+			helicopterbackRotorHolderColor = "grey";
+			helicopterOrdnanceHolderColor = "grey";
+			helicopterOrdnanceColor = "grey";
+
+			tankFirearmsColor = "grey";
+			tankWeaponMounterColor = "grey";
+			tankBodyColor = "grey";
+			tankWheelColor = "black";
+			tankChainColor = "grey";
+
+			cameraColor = "black";
+			cameraHolderColor = "grey";
+
+			menuBackgroundColor = "white";
+			menuHeaderColor = "grey";
+			menuItemDescriptionColor = "grey";
+			menuItemOptionColor = "grey";
+			menuItemOptionBorderColor = "black";
+			break;
+		case "Tasty":
+			buildingWindowColor = "fuchsia";
+			buildingDoorColor = "fuchsia";
+			buildingWallColor = "purple";
+			buildingFirstFloorWallColor = "purple";
+			buildingBannerColor = "purple";
+			buildingBannerTextColor = "fuchsia";
+
+			helicopterRotorColor = "purple";
+			helicopterRotorHolderColor = "purple";
+			helicopterBodyColor = "purple";
+			helicopterWindowColor = "fuchsia";
+			helicopterBackRotorColor = "purple";
+			helicopterbackRotorHolderColor = "purple";
+			helicopterOrdnanceHolderColor = "purple";
+			helicopterOrdnanceColor = "purple";
+
+			tankFirearmsColor = "purple";
+			tankWeaponMounterColor = "purple";
+			tankBodyColor = "purple";
+			tankWheelColor = "fuchsia";
+			tankChainColor = "purple";
+
+			cameraColor = "fuchsia";
+			cameraHolderColor = "purple";
+
+			menuBackgroundColor = "white";
+			menuHeaderColor = "purple";
+			menuItemDescriptionColor = "purple";
+			menuItemOptionColor = "purple";
+			menuItemOptionBorderColor = "fuchsia";
+			break;
+		case "Gold":
+			buildingWindowColor = "gold";
+			buildingDoorColor = "gold";
+			buildingWallColor = "red";
+			buildingFirstFloorWallColor = "red";
+			buildingBannerColor = "red";
+			buildingBannerTextColor = "gold";
+
+			helicopterRotorColor = "red";
+			helicopterRotorHolderColor = "red";
+			helicopterBodyColor = "red";
+			helicopterWindowColor = "gold";
+			helicopterBackRotorColor = "red";
+			helicopterbackRotorHolderColor = "red";
+			helicopterOrdnanceHolderColor = "red";
+			helicopterOrdnanceColor = "red";
+
+			tankFirearmsColor = "red";
+			tankWeaponMounterColor = "red";
+			tankBodyColor = "red";
+			tankWheelColor = "gold";
+			tankChainColor = "red";
+
+			cameraColor = "gold";
+			cameraHolderColor = "red";
+
+			menuBackgroundColor = "white";
+			menuHeaderColor = "red";
+			menuItemDescriptionColor = "red";
+			menuItemOptionColor = "red";
+			menuItemOptionBorderColor = "gold";
+			break;
+		case "Orange":
+			buildingWindowColor = "Orange";
+			buildingDoorColor = "Orange";
+			buildingWallColor = "darkblue";
+			buildingFirstFloorWallColor = "darkblue";
+			buildingBannerColor = "darkblue";
+			buildingBannerTextColor = "Orange";
+
+			helicopterRotorColor = "darkblue";
+			helicopterRotorHolderColor = "darkblue";
+			helicopterBodyColor = "darkblue";
+			helicopterWindowColor = "Orange";
+			helicopterBackRotorColor = "darkblue";
+			helicopterbackRotorHolderColor = "darkblue";
+			helicopterOrdnanceHolderColor = "darkblue";
+			helicopterOrdnanceColor = "darkblue";
+
+			tankFirearmsColor = "darkblue";
+			tankWeaponMounterColor = "darkblue";
+			tankBodyColor = "darkblue";
+			tankWheelColor = "Orange";
+			tankChainColor = "darkblue";
+
+			cameraColor = "Orange";
+			cameraHolderColor = "darkblue";
+
+			menuBackgroundColor = "white";
+			menuHeaderColor = "darkblue";
+			menuItemDescriptionColor = "darkblue";
+			menuItemOptionColor = "darkblue";
+			menuItemOptionBorderColor = "Orange";
+			break;
+		case "Liquid":
+			buildingWindowColor = "#107095";
+			buildingDoorColor = "#107095";
+			buildingWallColor = "#035075";
+			buildingFirstFloorWallColor = "#035075";
+			buildingBannerColor = "#035075";
+			buildingBannerTextColor = "#107095";
+
+			helicopterRotorColor = "#035075";
+			helicopterRotorHolderColor = "#035075";
+			helicopterBodyColor = "#035075";
+			helicopterWindowColor = "#107095";
+			helicopterBackRotorColor = "#035075";
+			helicopterbackRotorHolderColor = "#035075";
+			helicopterOrdnanceHolderColor = "#035075";
+			helicopterOrdnanceColor = "#035075";
+
+			tankFirearmsColor = "#035075";
+			tankWeaponMounterColor = "#035075";
+			tankBodyColor = "#035075";
+			tankWheelColor = "#107095";
+			tankChainColor = "#035075";
+
+			cameraColor = "#107095";
+			cameraHolderColor = "#035075";
+
+			menuBackgroundColor = "white";
+			menuHeaderColor = "#035075";
+			menuItemDescriptionColor = "#035075";
+			menuItemOptionColor = "#035075";
+			menuItemOptionBorderColor = "#107095";
+			break;
 	}
-	else if (color == "Hot")
+}
+
+function changeMenuColors()
+{
+	// Menu background color
+	var menu = document.querySelector("#menu");
+
+	menu.style.backgroundColor = "white";
+
+	// Menu header color
+	var menuHeader = document.querySelector(".header");
+
+	menuHeader.style.color = menuHeaderColor;
+
+	// Menu item description color
+	for (var i = 1; i < 7; i++)
 	{
-		buildingWindowColor = "pink";
-		buildingDoorColor = "pink";
-		buildingWallColor = "grey";
-		buildingFirstFloorWallColor = "grey";
-		buildingBannerColor = "grey";
-		buildingBannerTextColor = "pink";
+		var menuItemDescription = document.querySelector("#itemDescription" + i);
 
-		helicopterRotorColor = "grey";
-		helicopterRotorHolderColor = "grey";
-		helicopterBodyColor = "grey";
-		helicopterWindowColor = "pink";
-		helicopterBackRotorColor = "grey";
-		helicopterbackRotorHolderColor = "grey";
-		helicopterOrdnanceHolderColor = "grey";
-		helicopterOrdnanceColor = "grey";
-
-		tankFirearmsColor = "grey";
-		tankWeaponMounterColor = "grey";
-		tankBodyColor = "grey";
-		tankWheelColor = "pink";
-		tankChainColor = "grey";
+		menuItemDescription.style.color = menuItemDescriptionColor;
 	}
-	else if (color == "Bright")
-	{
-		buildingWindowColor = "lavender";
-		buildingDoorColor = "lavender";
-		buildingWallColor = "lightblue";
-		buildingFirstFloorWallColor = "lightblue";
-		buildingBannerColor = "lightblue";
-		buildingBannerTextColor = "lavender";
 
-		helicopterRotorColor = "lightblue";
-		helicopterRotorHolderColor = "lightblue";
-		helicopterBodyColor = "lightblue";
-		helicopterWindowColor = "lavender";
-		helicopterBackRotorColor = "lightblue";
-		helicopterbackRotorHolderColor = "lightblue";
-		helicopterOrdnanceHolderColor = "lightblue";
-		helicopterOrdnanceColor = "lightblue";
+	// Menu item option color
+	var width = document.querySelector("#width");
 
-		tankFirearmsColor = "lightblue";
-		tankWeaponMounterColor = "lightblue";
-		tankBodyColor = "lightblue";
-		tankWheelColor = "lavender";
-		tankChainColor = "lightblue";
-	}
-	else if (color == "Dark")
-	{
-		buildingWindowColor = "black";
-		buildingDoorColor = "black";
-		buildingWallColor = "grey";
-		buildingFirstFloorWallColor = "grey";
-		buildingBannerColor = "grey";
-		buildingBannerTextColor = "black";
+	width.style.color = menuItemOptionColor;
 
-		helicopterRotorColor = "grey";
-		helicopterRotorHolderColor = "grey";
-		helicopterBodyColor = "grey";
-		helicopterWindowColor = "black";
-		helicopterBackRotorColor = "grey";
-		helicopterbackRotorHolderColor = "grey";
-		helicopterOrdnanceHolderColor = "grey";
-		helicopterOrdnanceColor = "grey";
+	width.style.border = "2px solid " + menuItemOptionBorderColor;
 
-		tankFirearmsColor = "grey";
-		tankWeaponMounterColor = "grey";
-		tankBodyColor = "grey";
-		tankWheelColor = "black";
-		tankChainColor = "grey";
-	}
-	else if (color == "Tasty")
-	{
-		buildingWindowColor = "fuchsia";
-		buildingDoorColor = "fuchsia";
-		buildingWallColor = "purple";
-		buildingFirstFloorWallColor = "purple";
-		buildingBannerColor = "purple";
-		buildingBannerTextColor = "fuchsia";
+	var floorNumbers = document.querySelector("#floorNumbers");
 
-		helicopterRotorColor = "purple";
-		helicopterRotorHolderColor = "purple";
-		helicopterBodyColor = "purple";
-		helicopterWindowColor = "fuchsia";
-		helicopterBackRotorColor = "purple";
-		helicopterbackRotorHolderColor = "purple";
-		helicopterOrdnanceHolderColor = "purple";
-		helicopterOrdnanceColor = "purple";
+	floorNumbers.style.color = menuItemOptionColor;
 
-		tankFirearmsColor = "purple";
-		tankWeaponMounterColor = "purple";
-		tankBodyColor = "purple";
-		tankWheelColor = "fuchsia";
-		tankChainColor = "purple";
-	}
-	else if (color == "Gold")
-	{
-		buildingWindowColor = "gold";
-		buildingDoorColor = "gold";
-		buildingWallColor = "red";
-		buildingFirstFloorWallColor = "red";
-		buildingBannerColor = "red";
-		buildingBannerTextColor = "gold";
+	floorNumbers.style.border = "2px solid " + menuItemOptionBorderColor;
 
-		helicopterRotorColor = "red";
-		helicopterRotorHolderColor = "red";
-		helicopterBodyColor = "red";
-		helicopterWindowColor = "gold";
-		helicopterBackRotorColor = "red";
-		helicopterbackRotorHolderColor = "red";
-		helicopterOrdnanceHolderColor = "red";
-		helicopterOrdnanceColor = "red";
+	var color = document.querySelector("#color");
 
-		tankFirearmsColor = "red";
-		tankWeaponMounterColor = "red";
-		tankBodyColor = "red";
-		tankWheelColor = "gold";
-		tankChainColor = "red";
-	}
-	else if (color == "Orange")
-	{
-		buildingWindowColor = "Orange";
-		buildingDoorColor = "Orange";
-		buildingWallColor = "darkblue";
-		buildingFirstFloorWallColor = "darkblue";
-		buildingBannerColor = "darkblue";
-		buildingBannerTextColor = "Orange";
+	color.style.color = menuItemOptionColor;
 
-		helicopterRotorColor = "darkblue";
-		helicopterRotorHolderColor = "darkblue";
-		helicopterBodyColor = "darkblue";
-		helicopterWindowColor = "Orange";
-		helicopterBackRotorColor = "darkblue";
-		helicopterbackRotorHolderColor = "darkblue";
-		helicopterOrdnanceHolderColor = "darkblue";
-		helicopterOrdnanceColor = "darkblue";
+	color.style.border = "2px solid " + menuItemOptionBorderColor;
 
-		tankFirearmsColor = "darkblue";
-		tankWeaponMounterColor = "darkblue";
-		tankBodyColor = "darkblue";
-		tankWheelColor = "Orange";
-		tankChainColor = "darkblue";
-	}
+	var type = document.querySelector("#type");
+
+	type.style.color = menuItemOptionColor;
+
+	type.style.border = "2px solid " + menuItemOptionBorderColor;
+
+	var show = document.querySelector("#show");
+
+	show.style.color = menuItemOptionColor;
+
+	show.style.border = "2px solid " + menuItemOptionBorderColor;
+
+	var security = document.querySelector("#security");
+
+	security.style.color = menuItemOptionColor;
+
+	security.style.border = "2px solid " + menuItemOptionBorderColor;
 }
 
 function drawRoof(x, y, width, height, type)
 {
 	cx.fillStyle = buildingBannerColor;
 	cx.fillRect(x, y, width, height);
-	cx.strokeStyle = "white";
-	cx.strokeRect(x, y, width, height);
 
 	type = "Cloud " + type;
 
@@ -405,7 +707,7 @@ function drawRoof(x, y, width, height, type)
 	var fontPX = width / type.length * 1.5
 
 	// Max font size
-	fontPX = fontPX > 30? 30 : fontPX;
+	fontPX = fontPX > 32? 32 : fontPX;
 
 	// Banner text
 	cx.fillStyle = buildingBannerTextColor;
@@ -415,43 +717,47 @@ function drawRoof(x, y, width, height, type)
 
 function drawFloor(x, y, width, height, show)
 {
+	var pillarDimension = 20;
+	var tubeDimension = 5;
+	var wireDimension = 2;
+
 	switch (show)
 	{
 		case "All":
 			cx.fillStyle = buildingWallColor;
 			cx.fillRect(x, y, width, height);
-			cx.strokeStyle = "white";
-			cx.strokeRect(x, y, width, height);
 
 			// Window
 			cx.fillStyle = buildingWindowColor;
 
-			var windowWidth = width / 2 - 6;
+			var windowHeight = height * 0.5;
 
-			cx.fillRect(x + 4, y, width / 2 - 6, height / 2);
+			var windowWidth = width / 2 - 3;
 
-			cx.fillRect(x + 4 + windowWidth + 4, y, windowWidth, height / 2);
-		break;
+			cx.fillRect(x + 2, y, windowWidth, windowHeight);
+
+			cx.fillRect(x + 2 + windowWidth + 1, y, windowWidth + 1, windowHeight);
+			break;
 		case "Plumping":
 			cx.fillStyle = "blue";
 
 			// Upward
-			cx.fillRect(x + 5, y, 5, height);
+			cx.fillRect(x + tubeDimension, y, tubeDimension, height);
 
 
 			// Crosswise
-			cx.fillRect(x, y + height, width, 5);
-		break;
+			cx.fillRect(x, y + height, width, tubeDimension);
+			break;
 		case "Wiring":
 			cx.fillStyle = "red";
 
 			// Upward
-			cx.fillRect(x + 2, y, 2, height);
+			cx.fillRect(x + wireDimension, y, wireDimension, height);
 
 
 			// Crosswise
-			cx.fillRect(x, y + height, width, 2);
-		break;
+			cx.fillRect(x, y + height, width, wireDimension);
+			break;
 		case "Lamps":
 			cx.fillStyle = "gold";
 
@@ -460,19 +766,19 @@ function drawFloor(x, y, width, height, show)
 			{
 				cx.fillRect(myI, y, 8, 2);			
 			}
-		break;
+			break;
 		case "Structure":
 			cx.fillStyle = "grey";
 
 			// Pillar 1
-			cx.fillRect(x, y, 20, height);
+			cx.fillRect(x, y, pillarDimension, height);
 
 			// Pillar 2
-			cx.fillRect(x + width - 20, y, 20, height);
+			cx.fillRect(x + width - pillarDimension, y, pillarDimension, height);
 
 			// Crosswise
-			cx.fillRect(x, y, width, 10);
-		break;
+			cx.fillRect(x, y, width, pillarDimension / 2);
+			break;
 	}
 }
 
@@ -525,6 +831,8 @@ function drawBuilding(foundationX, foundationY, x, y, floorNumber, type, color, 
 	
 	setColor(color);
 
+	changeMenuColors();
+
 	drawFirstFloor(foundationX, foundationY, width, height, floorNumber)
 
 	for (i = 0; i < floorNumber; i++)
@@ -538,6 +846,8 @@ function drawBuilding(foundationX, foundationY, x, y, floorNumber, type, color, 
 
 function drawTank(x, y, size)
 {
+	cx.lineWidth = 2 * size;
+
 	// Firearms
 	cx.beginPath();
 	cx.moveTo(x + 55 * size, y + 10 * size);
@@ -624,15 +934,16 @@ draw: function(inX, inY, size)
 {
 	// Clear clouds
 	cx.fillStyle = "white";
+	cx.lineWidth = 2 * size;
 
 	// X: Rotor
 	// Y: Rotor - 1
 	// X: Empiric
 	// Y: Empiric
-	cx.fillRect(	(this.inXPrevious + 60 - (size * 60)),
-			(this.inYPrevious + 35 - (35 * size)) - 1,
-			142 * size,
-			104 * size);
+	cx.fillRect(	(this.inXPrevious + 60 - (size * 60) - size),
+			(this.inYPrevious + 35 - (35 * size)) - (2 * size),
+			152 * size,
+			104 * size + (2 * size));
 
 	// When parameters change
 	if (this.inXPrevious != inX || this.inYPrevious != inY)
@@ -680,9 +991,9 @@ draw: function(inX, inY, size)
 
 	// Back rotor
 	cx.beginPath();
-	cx.moveTo(this.x + 60 + 70 * size, this.y + 35);
-	cx.arc(this.x + 60 + 70 * size, this.y + 35, 10 * size, 0 + this.backRotorCounter, 0.2 + this.backRotorCounter);
-	cx.arc(this.x + 60 + 70 * size, this.y + 35, 10 * size, 3 + this.backRotorCounter, 3.2 + this.backRotorCounter);
+	cx.moveTo(this.x + 60 + 80 * size, this.y + 35 + 1 * size);
+	cx.arc(this.x + 60 + 80 * size, this.y + 35 + 1 * size, 10 * size, 0 + this.backRotorCounter, 0.2 + this.backRotorCounter);
+	cx.arc(this.x + 60 + 80 * size, this.y + 35 + 1 * size, 10 * size, 3 + this.backRotorCounter, 3.2 + this.backRotorCounter);
 	cx.fillStyle = helicopterBackRotorColor;
 	cx.fill();
 
@@ -691,9 +1002,11 @@ draw: function(inX, inY, size)
 	// Back rotor holder
 	cx.beginPath();
 	cx.moveTo((this.x + 60 + 25 * size), this.y + 35);
-	cx.lineTo(this.x + 60 + 70 * size, this.y + 35);
+	cx.lineTo(this.x + 60 + 80 * size, this.y + 35);
+	cx.lineTo(this.x + 60 + 80 * size, this.y + 35 + 3 * size);
+	cx.lineTo((this.x + 60 + 24 * size), this.y + 35 + 5 * size);
 	cx.strokeStyle = helicopterBackRotorColor;
-	cx.stroke();
+	cx.fill();
 
 	// Ordnance holder
 	cx.beginPath();
@@ -713,8 +1026,10 @@ draw: function(inX, inY, size)
 
 function drawCCTV(x, y, width, floorHeight, floorNumbers)
 {
-	cx.fillStyle = "black";
-	cx.strokeStyle = "black";
+	cx.lineWidth = 1;
+
+	cx.fillStyle = cameraColor;
+	cx.strokeStyle = cameraHolderColor;
 
 	var buildingHeight = floorHeight + floorHeight * floorNumbers;
 
@@ -829,7 +1144,7 @@ function drawSecurity(security, x, y, width, floorHeight, floorNumbers)
 
 			if (myCanvasX > 640)
 			{
-				myHelicopter2.draw(x - 160, helicopterY + 50, 1);
+				myHelicopter2.draw(x - 160, 60 + 170, 1);
 			}
 
 			if (myCanvasX > 800)
