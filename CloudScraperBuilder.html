@@ -930,6 +930,8 @@ inYPrevious: 0,
 shakeSize: 2,
 rotator: 1,
 backRotorCounter: 1,
+endX: 0,
+endY: 0,
 draw: function(inX, inY, size) 
 {
 	// Clear clouds
@@ -937,13 +939,16 @@ draw: function(inX, inY, size)
 	cx.lineWidth = 2 * size;
 
 	// X: Rotor
-	// Y: Rotor - 1
-	// X: Empiric
-	// Y: Empiric
-	cx.fillRect(	(this.inXPrevious + 60 - (size * 60) - size),
-			(this.inYPrevious + 35 - (35 * size)) - (2 * size),
-			152 * size,
-			104 * size + (2 * size));
+	// Y: Rotor
+	// endX: Empiric
+	// endY: Empiric
+	this.endX = 152 * size;
+	this.endY = 104 * size + (2 * size);
+
+	cx.fillRect(	this.inXPrevious,
+			this.inYPrevious,
+			this.endX,
+			this.endY);
 
 	// When parameters change
 	if (this.inXPrevious != inX || this.inYPrevious != inY)
@@ -960,8 +965,8 @@ draw: function(inX, inY, size)
 
 	// Rotor
 	cx.beginPath();
-	cx.moveTo(this.x + 60 - (size * 60), this.y + 35 - (35 * size));
-	cx.lineTo(this.x + 60 + (size * 60), this.y + 35 - (35 * size));
+	cx.moveTo(this.x, this.y + size);
+	cx.lineTo(this.x + (size * 120), this.y + size);
 
 	// Rotation effect
 	this.rotator = this.rotator == 1? 0 : 1;
@@ -972,28 +977,28 @@ draw: function(inX, inY, size)
 
 	// Rotor holder
 	cx.beginPath();
-	cx.moveTo(this.x + 60, this.y + 35 - (25 * size));
-	cx.lineTo(this.x + 60, this.y + 35 - (35 * size));
+	cx.moveTo(this.x + (60 * size), this.y + size);
+	cx.lineTo(this.x + (60 * size), this.y + size + (10 * size));
 	cx.strokeStyle = helicopterRotorHolderColor;
 	cx.stroke();
 
 	// Body
 	cx.beginPath();
-	cx.arc(this.x + 60, this.y + 35, 25 * size, 0, 7);
+	cx.arc(this.x + (60 * size), this.y + (36 * size), 25 * size, 0, 7);
 	cx.fillStyle = helicopterBodyColor;
 	cx.fill();
 
 	// Window
 	cx.beginPath();
-	cx.arc(this.x + 60, this.y + 35, 22 * size, 3, 5);
+	cx.arc(this.x + (60 * size), this.y + (36 * size), 22 * size, 3, 5);
 	cx.fillStyle = helicopterWindowColor;
 	cx.fill();
 
 	// Back rotor
 	cx.beginPath();
-	cx.moveTo(this.x + 60 + 80 * size, this.y + 35 + 1 * size);
-	cx.arc(this.x + 60 + 80 * size, this.y + 35 + 1 * size, 10 * size, 0 + this.backRotorCounter, 0.2 + this.backRotorCounter);
-	cx.arc(this.x + 60 + 80 * size, this.y + 35 + 1 * size, 10 * size, 3 + this.backRotorCounter, 3.2 + this.backRotorCounter);
+	cx.moveTo(this.x + (60 * size) + 80 * size, this.y + (36 * size) + 1 * size);
+	cx.arc(this.x + (60 * size) + 80 * size, this.y + (36 * size) + 1 * size, 10 * size, 0 + this.backRotorCounter, 0.2 + this.backRotorCounter);
+	cx.arc(this.x + (60 * size) + 80 * size, this.y + (36 * size) + 1 * size, 10 * size, 3 + this.backRotorCounter, 3.2 + this.backRotorCounter);
 	cx.fillStyle = helicopterBackRotorColor;
 	cx.fill();
 
@@ -1001,24 +1006,24 @@ draw: function(inX, inY, size)
 
 	// Back rotor holder
 	cx.beginPath();
-	cx.moveTo((this.x + 60 + 25 * size), this.y + 35);
-	cx.lineTo(this.x + 60 + 80 * size, this.y + 35);
-	cx.lineTo(this.x + 60 + 80 * size, this.y + 35 + 3 * size);
-	cx.lineTo((this.x + 60 + 24 * size), this.y + 35 + 5 * size);
+	cx.moveTo((this.x + (60 * size) + 25 * size), this.y + (36 * size));
+	cx.lineTo(this.x + (60 * size) + 80 * size, this.y + (36 * size));
+	cx.lineTo(this.x + (60 * size) + 80 * size, this.y + (36 * size) + 3 * size);
+	cx.lineTo((this.x + (60 * size) + 24 * size), this.y + (36 * size) + 5 * size);
 	cx.strokeStyle = helicopterBackRotorColor;
 	cx.fill();
 
 	// Ordnance holder
 	cx.beginPath();
-	cx.moveTo(this.x + 60, this.y + 35 + 25 * size);
-	cx.lineTo(this.x + 60, this.y + 35 + 50 * size);
+	cx.moveTo(this.x + (60 * size), this.y + (36 * size) + 25 * size);
+	cx.lineTo(this.x + (60 * size), this.y + (36 * size) + 50 * size);
 	cx.strokeStyle = helicopterOrdnanceHolderColor;
 	cx.stroke();
 
 	// Ordnance
 	cx.beginPath();
-	cx.moveTo(this.x + 60 + 20 * size, this.y + 35 + 25 * size);
-	cx.lineTo(this.x + 60 - 30 * size, this.y + 35 + 65 * size);
+	cx.moveTo(this.x + (60 * size) + 20 * size, this.y + (36 * size) + 25 * size);
+	cx.lineTo(this.x + (60 * size) - 30 * size, this.y + (36 * size) + 65 * size);
 	cx.strokeStyle = helicopterOrdnanceColor;
 	cx.stroke();
 }
