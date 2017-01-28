@@ -64,11 +64,11 @@ select
 	<div id="menu">
 		<form>
 			<div class="header">
-			CloudScraper Builder
+				CloudScraper Builder
 			</div>
 
 			<div class="itemDescription" id="itemDescription1">
-			Number of floors:
+				Number of floors:
 			</div>
 			<div class="itemHolder" id="itemHolder1">
 				<select name="floorNumbers" id="floorNumbers">
@@ -81,12 +81,12 @@ select
 					<option value="7">7</option>
 					<option value="8">8</option>
 					<option value="9">9</option>
-					<option value="10">10</option>
+					<option selected="" value="10">10</option>
 				</select>
 			</div>
 
 			<div class="itemDescription" id="itemDescription2">
-			Width:
+				Width:
 			</div>
 			<div class="itemHolder" id="itemHolder2">
 				<select name="width" id="width">
@@ -110,17 +110,44 @@ select
 					<option value="27">27</option>
 					<option value="28">28</option>
 					<option value="29">29</option>
-					<option value="30">30</option>
+					<option selected="" value="30">30</option>
 				</select>
 			</div>
 
 			<div class="itemDescription" id="itemDescription3">
-			Color:
+				Window height: 
 			</div>
 			<div class="itemHolder" id="itemHolder3">
+				<select name="windowHeight" id="windowHeight">
+					<option value="0.1">10</option>
+					<option value="0.2">20</option>
+					<option value="0.3">30</option>
+					<option value="0.4">40</option>
+					<option value="0.5">50</option>
+					<option value="0.6">60</option>
+					<option value="0.7">70</option>
+					<option value="0.8">80</option>
+					<option selected="" value="0.9">90</option>
+				</select>
+			</div>
+
+			<div class="itemDescription" id="itemDescription4">
+				Ground floor:
+			</div>
+			<div class="itemHolder" id="itemHolder4">
+				<select name="groundFloor" id="groundFloor">
+					<option selected="" value="Concrete">Concrete</option>
+					<option value="Windows">Windows</option>
+				</select>
+			</div>
+
+			<div class="itemDescription" id="itemDescription5">
+				Color:
+			</div>
+			<div class="itemHolder" id="itemHolder5">
 				<select name="color" id="color">
 					<option value="Cool">Cool</option>
-					<option value="Cooler">Cooler</option>
+					<option selected="" value="Cooler">Cooler</option>
 					<option value="Wet">Wet</option>
 					<option value="Wetter">Wetter</option>
 					<option value="Hot">Hot</option>
@@ -134,46 +161,48 @@ select
 				</select>
 			</div>
 
-			<div class="itemDescription" id="itemDescription4">
-			Type:
+			<div class="itemDescription" id="itemDescription6">
+				Type:
 			</div>
-			<div class="itemHolder" id="itemHolder4">
+			<div class="itemHolder" id="itemHolder6">
 				<select name="type" id="type">
 					<option value="Trade Center">Trade Center</option>
-					<option value="Research Center">Research Center</option>
+					<option selected="" value="Research Center">Research Center</option>
 					<option value="Hospital">Hospital</option>
 					<option value="University">University</option>
 					<option value="Central Command">Central Command</option>
 					<option value="Hotel">Hotel</option>
 					<option value="Residential">Residential</option>
 					<option value="Brothel">Brothel</option>
+					<option value="Fire Temple">Fire Temple</option>
 				</select>
 			</div>
 
-			<div class="itemDescription" id="itemDescription5">
-			Show:
+			<div class="itemDescription" id="itemDescription7">
+				Show:
 			</div>
-			<div class="itemHolder" id="itemHolder5">
+			<div class="itemHolder" id="itemHolder7">
 				<select name="show" id="show">
-					<option value="All">All</option>
+					<option selected="" value="All">All</option>
 					<option value="Plumping">Plumping</option>
 					<option value="Wiring">Wiring</option>
 					<option value="Lamps">Lamps</option>
+					<option value="Elevator">Elevator</option>
 					<option value="Structure">Structure</option>
 				</select>
 			</div>
 
-			<div class="itemDescription" id="itemDescription6">
-			Security:
+			<div class="itemDescription" id="itemDescription8">
+				Security:
 			</div>
-			<div class="itemHolder" id="itemHolder6">
+			<div class="itemHolder" id="itemHolder8">
 				<select name="security" id="security">
 					<option value="Optimism">Optimism</option>
 					<option value="Special forces">Special forces</option>
 					<option value="Tank">Tank</option>
 					<option value="Helicopter">Helicopter</option>
 					<option value="CCTV">CCTV</option>
-					<option value="Paranoia">Paranoia</option>
+					<option selected="" value="Paranoia">Paranoia</option>
 				</select>
 			</div>
 		</form>
@@ -187,7 +216,7 @@ select
 var buildingWindowColor;
 var buildingDoorColor;
 var buildingWallColor;
-var buildingFirstFloorWallColor;
+var buildingGroundFloorWallColor;
 var buildingBannerColor;
 var buildingBannerTextColor;
 
@@ -225,7 +254,7 @@ var menuItemOptionBorderColor;
 var canvas = document.querySelector("#canvas");
 var cx = canvas.getContext("2d");
 
-canvas.width = screen.width - 401;
+canvas.width = screen.width > 1667? 1266 : screen.width - 401;
 
 var bigENOUGH = true;
 
@@ -255,7 +284,7 @@ function setColor(color)
 			buildingWindowColor = "cyan";
 			buildingDoorColor = "cyan";
 			buildingWallColor = "grey";
-			buildingFirstFloorWallColor = "grey";
+			buildingGroundFloorWallColor = "grey";
 			buildingBannerColor = "grey";
 			buildingBannerTextColor = "cyan";
 
@@ -287,7 +316,7 @@ function setColor(color)
 			buildingWindowColor = "turquoise";
 			buildingDoorColor = "turquoise";
 			buildingWallColor = "grey";
-			buildingFirstFloorWallColor = "grey";
+			buildingGroundFloorWallColor = "grey";
 			buildingBannerColor = "grey";
 			buildingBannerTextColor = "turquoise";
 
@@ -319,7 +348,7 @@ function setColor(color)
 			buildingWindowColor = "blue";
 			buildingDoorColor = "blue";
 			buildingWallColor = "grey";
-			buildingFirstFloorWallColor = "grey";
+			buildingGroundFloorWallColor = "grey";
 			buildingBannerColor = "grey";
 			buildingBannerTextColor = "blue";
 
@@ -351,7 +380,7 @@ function setColor(color)
 			buildingWindowColor = "darkblue";
 			buildingDoorColor = "darkblue";
 			buildingWallColor = "grey";
-			buildingFirstFloorWallColor = "grey";
+			buildingGroundFloorWallColor = "grey";
 			buildingBannerColor = "grey";
 			buildingBannerTextColor = "darkblue";
 
@@ -374,16 +403,16 @@ function setColor(color)
 			cameraHolderColor = "grey";
 
 			menuBackgroundColor = "white";
-			menuHeaderColor = "darkblue";
-			menuItemDescriptionColor = "darkblue";
+			menuHeaderColor = "grey";
+			menuItemDescriptionColor = "grey";
 			menuItemOptionColor = "grey";
-			menuItemOptionBorderColor = "grey";
+			menuItemOptionBorderColor = "darkblue";
 			break;
 		case "Hot":
 			buildingWindowColor = "pink";
 			buildingDoorColor = "pink";
 			buildingWallColor = "grey";
-			buildingFirstFloorWallColor = "grey";
+			buildingGroundFloorWallColor = "grey";
 			buildingBannerColor = "grey";
 			buildingBannerTextColor = "pink";
 
@@ -415,7 +444,7 @@ function setColor(color)
 			buildingWindowColor = "fuchsia";
 			buildingDoorColor = "fuchsia";
 			buildingWallColor = "grey";
-			buildingFirstFloorWallColor = "grey";
+			buildingGroundFloorWallColor = "grey";
 			buildingBannerColor = "grey";
 			buildingBannerTextColor = "fuchsia";
 
@@ -447,7 +476,7 @@ function setColor(color)
 			buildingWindowColor = "lavender";
 			buildingDoorColor = "lavender";
 			buildingWallColor = "lightblue";
-			buildingFirstFloorWallColor = "lightblue";
+			buildingGroundFloorWallColor = "lightblue";
 			buildingBannerColor = "lightblue";
 			buildingBannerTextColor = "lavender";
 
@@ -479,7 +508,7 @@ function setColor(color)
 			buildingWindowColor = "black";
 			buildingDoorColor = "black";
 			buildingWallColor = "grey";
-			buildingFirstFloorWallColor = "grey";
+			buildingGroundFloorWallColor = "grey";
 			buildingBannerColor = "grey";
 			buildingBannerTextColor = "black";
 
@@ -511,7 +540,7 @@ function setColor(color)
 			buildingWindowColor = "fuchsia";
 			buildingDoorColor = "fuchsia";
 			buildingWallColor = "purple";
-			buildingFirstFloorWallColor = "purple";
+			buildingGroundFloorWallColor = "purple";
 			buildingBannerColor = "purple";
 			buildingBannerTextColor = "fuchsia";
 
@@ -543,7 +572,7 @@ function setColor(color)
 			buildingWindowColor = "gold";
 			buildingDoorColor = "gold";
 			buildingWallColor = "red";
-			buildingFirstFloorWallColor = "red";
+			buildingGroundFloorWallColor = "red";
 			buildingBannerColor = "red";
 			buildingBannerTextColor = "gold";
 
@@ -575,7 +604,7 @@ function setColor(color)
 			buildingWindowColor = "Orange";
 			buildingDoorColor = "Orange";
 			buildingWallColor = "darkblue";
-			buildingFirstFloorWallColor = "darkblue";
+			buildingGroundFloorWallColor = "darkblue";
 			buildingBannerColor = "darkblue";
 			buildingBannerTextColor = "Orange";
 
@@ -607,7 +636,7 @@ function setColor(color)
 			buildingWindowColor = "#107095";
 			buildingDoorColor = "#107095";
 			buildingWallColor = "#035075";
-			buildingFirstFloorWallColor = "#035075";
+			buildingGroundFloorWallColor = "#035075";
 			buildingBannerColor = "#035075";
 			buildingBannerTextColor = "#107095";
 
@@ -651,7 +680,7 @@ function changeMenuColors()
 	menuHeader.style.color = menuHeaderColor;
 
 	// Menu item description color
-	for (var i = 1; i < 7; i++)
+	for (var i = 1; i < 9; i++)
 	{
 		var menuItemDescription = document.querySelector("#itemDescription" + i);
 
@@ -670,6 +699,18 @@ function changeMenuColors()
 	floorNumbers.style.color = menuItemOptionColor;
 
 	floorNumbers.style.border = "2px solid " + menuItemOptionBorderColor;
+
+	var windowHeight = document.querySelector("#windowHeight");
+
+	windowHeight.style.color = menuItemOptionColor;
+
+	windowHeight.style.border = "2px solid " + menuItemOptionBorderColor;
+
+	var groundFloor = document.querySelector("#groundFloor");
+
+	groundFloor.style.color = menuItemOptionColor;
+
+	groundFloor.style.border = "2px solid " + menuItemOptionBorderColor;
 
 	var color = document.querySelector("#color");
 
@@ -715,11 +756,13 @@ function drawRoof(x, y, width, height, type)
 	cx.fillText(type, x + 10, y + 30);
 }
 
-function drawFloor(x, y, width, height, show)
+function drawFloor(x, y, width, height, windowHeight, floorNumber, show)
 {
-	var pillarDimension = 20;
-	var tubeDimension = 5;
-	var wireDimension = 2;
+	var pillarDimension = 6 + floorNumber * 1;
+	var tubeDimension = 1 + floorNumber * 0.1;
+	var wireDimension = 1;
+	var elevatorDimension = 25 + (floorNumber * width / 100);
+
 
 	switch (show)
 	{
@@ -730,13 +773,22 @@ function drawFloor(x, y, width, height, show)
 			// Window
 			cx.fillStyle = buildingWindowColor;
 
-			var windowHeight = height * 0.5;
+			var windowHeight = height * windowHeight;
 
-			var windowWidth = width / 2 - 3;
+			if (width > 200)
+			{
+				var windowWidth = width / 2 - 3;
 
-			cx.fillRect(x + 2, y, windowWidth, windowHeight);
+				cx.fillRect(x + 2, y, windowWidth, windowHeight);
 
-			cx.fillRect(x + 2 + windowWidth + 1, y, windowWidth + 1, windowHeight);
+				cx.fillRect(x + 2 + windowWidth + 1, y, windowWidth + 1, windowHeight);
+			}
+			else
+			{
+				var windowWidth = width - 4;
+
+				cx.fillRect(x + 2, y, windowWidth, windowHeight);
+			}
 			break;
 		case "Plumping":
 			cx.fillStyle = "blue";
@@ -767,13 +819,27 @@ function drawFloor(x, y, width, height, show)
 				cx.fillRect(myI, y, 8, 2);			
 			}
 			break;
+		case "Elevator":
+			cx.fillStyle = buildingDoorColor;
+			cx.strokeStyle = "white";
+
+			// Upward
+			cx.strokeRect(x + 10, y, elevatorDimension, height);
+			cx.fillRect(x + 10, y, elevatorDimension, height);
+			break;
 		case "Structure":
 			cx.fillStyle = "grey";
 
 			// Pillar 1
 			cx.fillRect(x, y, pillarDimension, height);
 
-			// Pillar 2
+			if (width > 200)
+			{
+				// Pillar 2
+				cx.fillRect(x + width / 2 - pillarDimension / 2, y, pillarDimension / 3 * 2, height);
+			}
+
+			// Pillar 3
 			cx.fillRect(x + width - pillarDimension, y, pillarDimension, height);
 
 			// Crosswise
@@ -782,31 +848,56 @@ function drawFloor(x, y, width, height, show)
 	}
 }
 
-function drawFirstFloor(x, y, width, height, floorNumber)
+function drawgroundFloor(x, y, width, height, floorNumber, groundFloor)
 {
-	cx.fillStyle = buildingFirstFloorWallColor;
+	cx.fillStyle = buildingGroundFloorWallColor;
 	cx.fillRect(x, y, width, height);
 
-	// Determine door height and width based on building size
-	var doorHeight = height / 1.5 + floorNumber * 1;
-	var doorWidth = 25 + (floorNumber * 5);
+	switch (groundFloor)
+	{
+		case "Concrete":
+			// Determine door height and width based on building size
+			var doorHeight = height / 1.5 + floorNumber * 1;
+			var doorWidth = 25 + (floorNumber * width / 100);
 
-	// Door
-	cx.fillStyle = buildingDoorColor;
-	cx.fillRect(x + 10, y + height - doorHeight, doorWidth, doorHeight);
+			// Door
+			cx.fillStyle = buildingDoorColor;
+			cx.fillRect(x + 10, y + height - doorHeight, doorWidth, doorHeight);
+			break;
+		case "Windows":
+			cx.fillStyle = buildingWallColor;
+			cx.fillRect(x, y, width, height);
+
+			// Window
+			cx.fillStyle = buildingWindowColor;
+
+			var windowHeight = height * .9;
+
+			if (width > 200)
+			{
+				var windowWidth = width / 2 - 3;
+
+				cx.fillRect(x + 2, y, windowWidth, windowHeight);
+
+				cx.fillRect(x + 2 + windowWidth + 1, y, windowWidth + 1, windowHeight);
+			}
+			else
+			{
+				var windowWidth = width - 4;
+
+				cx.fillRect(x + 2, y, windowWidth, windowHeight);
+			}
+			break;
+	}
 }
 
 
-function drawBuilding(foundationX, foundationY, x, y, floorNumber, type, color, show)
+function drawBuilding(foundationX, foundationY, x, y, floorNumber, windowHeight, type, groundFloor, show)
 {
 	// Clear clouds
 	cx.fillStyle = "white";
 	cx.fillRect(0, 0, myCanvasX, myCanvasY);
 
-
-	// Max width allowed
-	cx.fillStyle = "white";
-	cx.fillRect(0, 0, myCanvasX, myCanvasY);
 
 	// Max width allowed
 	x = x > 300? 300 : x;
@@ -826,100 +917,148 @@ function drawBuilding(foundationX, foundationY, x, y, floorNumber, type, color, 
 	// Min floors allowed
 	floorNumber = floorNumber < 1? 1 : floorNumber;
 
+	// Max window height allowed
+	windowHeight = windowHeight > 0.9? 0.9 : windowHeight;
+
+	// Min windows height allowed
+	windowHeight = windowHeight < 0.1? 0.1 : windowHeight;
+
 	width = x;
 	height = y;
-	
-	setColor(color);
 
-	changeMenuColors();
+	foundationX = foundationX + (300 - width) / 2;
 
-	drawFirstFloor(foundationX, foundationY, width, height, floorNumber)
+	drawgroundFloor(foundationX, foundationY, width, height, floorNumber, groundFloor)
 
 	for (i = 0; i < floorNumber; i++)
 	{
-		drawFloor(foundationX, foundationY - y - (i * y), width, height, show)
+		drawFloor(foundationX, foundationY - y - (i * y), width, height, windowHeight, floorNumber, show)
 	}
 
 	drawRoof(foundationX, foundationY - y - (i * y), width, height, type);
 }
 
-
-function drawTank(x, y, size)
+var tank = {
+x: 0,
+y: 0,
+inXPrevious: 0,
+inYPrevious: 0,
+endX: 0,
+endY: 0,
+movement: 0,
+direction: "up",
+draw: function(inX, inY, size)
 {
+	// Clear clouds
+	cx.fillStyle = "white";
 	cx.lineWidth = 2 * size;
+
+	// X: Rotor
+	// Y: Rotor
+	// endX: Empiric
+	// endY: Empiric
+	this.endX = 113 * size;
+	this.endY = 94 * size + (2 * size);
+
+	cx.fillRect(	this.inXPrevious,
+			this.inYPrevious,
+			this.endX,
+			this.endY);
+
+	// When parameters change
+	if (this.inXPrevious != inX || this.inYPrevious != inY)
+	{
+		this.inXPrevious = inX;
+		this.inYPrevious = inY;
+	
+		this.x = inX;
+		this.y = inY;
+	}
+
+	if (this.direction == "up")
+	{
+		this.movement = this.movement > 5 * size? 0 : this.movement + 1 * size;
+		this.direction = this.movement > 5 * size? "down" : "up";
+	}
+	else
+	{
+		this.movement = this.movement < 0? 0 : this.movement - 1 * size;
+		this.direction = this.movement < 0? "up" : "down";
+	}
 
 	// Firearms
 	cx.beginPath();
-	cx.moveTo(x + 55 * size, y + 10 * size);
-	cx.lineTo(x + 55 * size, y);
-	cx.lineTo(x + 25 * size, y);
-	cx.lineTo(x + 65 * size, y);
+	cx.moveTo(this.x + 58 * size, this.y + 17 * size);
+	cx.lineTo(this.x + 58 * size, this.y + 7 * size);
+	cx.moveTo(this.x + 28 * size, this.y + 7 * size - this.movement);
+	cx.lineTo(this.x + 68 * size, this.y + 7 * size + this.movement / 2);
 
 	cx.strokeStyle = tankFirearmsColor;
 	cx.stroke();
 
 	// Weapon mounter
 	cx.beginPath();
-	cx.moveTo(x + 35 * size, y + 20 * size);
-	cx.lineTo(x + 45 * size, y + 10 * size);
-	cx.lineTo(x + 65 * size, y + 10 * size);
-	cx.lineTo(x + 75 * size, y + 20 * size);
+	cx.moveTo(this.x + 38 * size, this.y + 27 * size);
+	cx.lineTo(this.x + 48 * size, this.y + 17 * size);
+	cx.lineTo(this.x + 68 * size, this.y + 17 * size);
+	cx.lineTo(this.x + 78 * size, this.y + 27 * size);
 
 	cx.strokeStyle = tankWeaponMounterColor;
 	cx.stroke();
 
 	// Body
 	cx.beginPath();
-	cx.moveTo(x, y + 40 * size);
-	cx.lineTo(x + 25 * size, y + 20 * size);
-	cx.lineTo(x + 85 * size, y + 20 * size);
-	cx.lineTo(x + 110 * size, y + 40 * size);
-	cx.lineTo(x + 95 * size, y + 60 * size);
-	cx.lineTo(x + 15 * size, y + 60 * size);
-	cx.lineTo(x, y + 40 * size);
+	cx.moveTo(this.x, this.y + 47 * size);
+	cx.lineTo(this.x + 33 * size, this.y + 27 * size);
+	cx.lineTo(this.x + 88 * size, this.y + 27 * size);
+	cx.lineTo(this.x + 113 * size, this.y + 47 * size);
+	cx.lineTo(this.x + 98 * size, this.y + 67 * size);
+	cx.lineTo(this.x + 18 * size, this.y + 67 * size);
+	cx.lineTo(this.x, this.y + 47 * size);
 
 	cx.fillStyle = tankBodyColor;
 	cx.fill();
 
 	// 1st wheel
 	cx.beginPath();
-	cx.arc(x + 15 * size, y + 75 * size, 10 * size, 0, 7);
+	cx.arc(this.x + 18 * size, this.y + 82 * size, 10 * size, 0, 7);
 
 	cx.fillStyle = tankWheelColor;
 	cx.fill();
 
 	// 2nd wheel
 	cx.beginPath();
-	cx.arc(x + 40 * size, y + 75 * size, 10 * size, 0, 7);
+	cx.arc(this.x + 43 * size, this.y + 82 * size, 10 * size, 0, 7);
 	cx.fill();
 
 	// 3rd wheel
 	cx.beginPath();
-	cx.arc(x + 65 * size, y + 75 * size, 10 * size, 0, 7);
+	cx.arc(this.x + 68 * size, this.y + 82 * size, 10 * size, 0, 7);
 	cx.fill();
 
 	// 4th wheel
 	cx.beginPath();
-	cx.arc(x + 90 * size, y + 75 * size, 10 * size, 0, 7);
+	cx.arc(this.x + 93 * size, this.y + 82 * size, 10 * size, 0, 7);
 	cx.fill();
 
 	// Front chain
 	cx.beginPath();
-	cx.arc(x + 10 * size, y + 75 * size, 12 * size, 1.8, 4.5);
+	cx.arc(this.x + 13 * size, this.y + 82 * size, 12 * size, 1.8, 4.5);
 
 	cx.strokeStyle = tankChainColor;
 	cx.stroke();
 
-	cx.lineTo(x + 98 * size, y + 63 * size);
+	cx.lineTo(this.x + 101 * size, this.y + 70 * size);
 	cx.stroke();
 
 	// End chain
 	cx.beginPath();
-	cx.arc(x + 95 * size, y + 75 * size, 12 * size, 5, 7.6);
+	cx.arc(this.x + 98 * size, this.y + 82 * size, 12 * size, 5, 7.6);
 	cx.stroke();
 
-	cx.lineTo(x + 7 * size, y + 87 * size);
+	cx.lineTo(this.x + 10 * size, this.y + 94 * size);
 	cx.stroke();
+}
 }
 
 var helicopter = {
@@ -961,7 +1100,7 @@ draw: function(inX, inY, size)
 	}
 
 	// Shaking effect
-	this.y == inY ? this.y = this.y + this.shakeSize : this.y = this.y - this.shakeSize;
+	this.y == inY ? this.y += this.shakeSize : this.y -= this.shakeSize;
 
 	// Rotor
 	cx.beginPath();
@@ -1031,6 +1170,8 @@ draw: function(inX, inY, size)
 
 function drawCCTV(x, y, width, floorHeight, floorNumbers)
 {
+	x = x + (300 - width) / 2;
+
 	cx.lineWidth = 1;
 
 	cx.fillStyle = cameraColor;
@@ -1038,38 +1179,36 @@ function drawCCTV(x, y, width, floorHeight, floorNumbers)
 
 	var buildingHeight = floorHeight + floorHeight * floorNumbers;
 
-	var CCTVX = y - buildingHeight;
+	var CCTVY = y - buildingHeight;
 
 	// Right
 	cx.beginPath();
-	cx.moveTo(x + width, CCTVX);
-	cx.lineTo(x + width + 10, CCTVX);
-	cx.lineTo(x + width + 10, CCTVX + 10);
+	cx.moveTo(x + width, CCTVY);
+	cx.lineTo(x + width + 10, CCTVY);
+	cx.lineTo(x + width + 10, CCTVY + 10);
 	cx.stroke();
 
 	cx.beginPath();
-	cx.arc(x + width + 10, CCTVX + 10, 7, 6.3, 3);
+	cx.arc(x + width + 10, CCTVY + 10, 7, 6.3, 3);
 	cx.fill();
 
 	// Left
 	cx.beginPath();
-	cx.moveTo(x, CCTVX);
-	cx.lineTo(x - 10, CCTVX);
-	cx.lineTo(x - 10, CCTVX + 10);
+	cx.moveTo(x, CCTVY);
+	cx.lineTo(x - 10, CCTVY);
+	cx.lineTo(x - 10, CCTVY + 10);
 	cx.stroke();
 
 	cx.beginPath();
-	cx.arc(x - 10, CCTVX + 10, 7, 6.3, 3);
+	cx.arc(x - 10, CCTVY + 10, 7, 6.3, 3);
 	cx.fill();
 }
 
 var airPatrol;
+var groundPatrol;
 
 function drawSecurity(security, x, y, width, floorHeight, floorNumbers)
 {
-	cx.strokeStyle = "black";
-	cx.fillStyle = "black";
-
 	if (security == "Optimism")
 	{
 		// No security
@@ -1080,32 +1219,69 @@ function drawSecurity(security, x, y, width, floorHeight, floorNumbers)
 	}
 	if (security == "Tank" || security == "Paranoia")
 	{
+		// Might already be set
+		clearInterval(groundPatrol);
+
 		// Patroling
-		if (myCanvasX > 640)
+		if (myCanvasX > 645)
 		{
-			drawTank(x - 160, 500, 1);
+			var myTank = Object.create(tank)
 		}
 
 		if (myCanvasX > 800)
 		{
-			drawTank(x - 320, 500, 1);
+			var myTank2 = Object.create(tank)
 		}
 
-		if (myCanvasX > 960)
+		if (myCanvasX > 955)
 		{
-			drawTank(x - 480, 500, 1);
+			var myTank3 = Object.create(tank)
 		}
 
-		if (myCanvasX > 1120)
+		if (myCanvasX > 1110)
 		{
-			drawTank(x - 640, 500, 1);
+			var myTank4 = Object.create(tank)
 		}
 
-		if (myCanvasX > 1280)
+		if (myCanvasX > 1265)
 		{
-			drawTank(x - 800, 500, 1);
+			var myTank5 = Object.create(tank)
 		}
+
+		// Patroling
+		groundPatrol = setInterval(function()
+		{
+			if (myCanvasX > 645)
+			{
+				myTank.draw(x - 170, 500, 1);
+			}
+
+			if (myCanvasX > 800)
+			{
+				myTank2.draw(x - 325, 500, 1);
+			}
+
+			if (myCanvasX > 955)
+			{
+				myTank3.draw(x - 480, 500, 1);
+			}
+
+			if (myCanvasX > 1110)
+			{
+				myTank4.draw(x - 635, 500, 1);
+			}
+
+			if (myCanvasX > 1265)
+			{
+				myTank5.draw(x - 790, 500, 1);
+			}
+		}, 100);
 	}
+	else
+	{
+		clearInterval(groundPatrol);
+	}
+
 	if (security == "Helicopter" || security == "Paranoia")
 	{
 		// Might already be set
@@ -1116,7 +1292,7 @@ function drawSecurity(security, x, y, width, floorHeight, floorNumbers)
 		var myHelicopter = Object.create(helicopter)
 
 		// Patroling
-		if (myCanvasX > 640)
+		if (myCanvasX > 645)
 		{
 			var myHelicopter2 = Object.create(helicopter)
 		}
@@ -1126,52 +1302,51 @@ function drawSecurity(security, x, y, width, floorHeight, floorNumbers)
 			var myHelicopter3 = Object.create(helicopter)
 		}
 
-		if (myCanvasX > 960)
+		if (myCanvasX > 955)
 		{
 			var myHelicopter4 = Object.create(helicopter)
 		}
 
-		if (myCanvasX > 1120)
+		if (myCanvasX > 1110)
 		{
 			var myHelicopter5 = Object.create(helicopter)
 		}
 
-		if (myCanvasX > 1280)
+		if (myCanvasX > 1265)
 		{
 			var myHelicopter6 = Object.create(helicopter)
 		}
 		// Patroling
 		airPatrol = setInterval(function()
 		{
-			helicopterY > 65? helicopterY = helicopterY - 10 : helicopterY;
+			helicopterY > 65? helicopterY -= 10 : helicopterY;
 
 			myHelicopter.draw(x + 320, helicopterY, 1);
 
-			if (myCanvasX > 640)
+			if (myCanvasX > 645)
 			{
-				myHelicopter2.draw(x - 160, 60 + 170, 1);
+				myHelicopter2.draw(x - 170, 60 + 170, 1);
 			}
 
 			if (myCanvasX > 800)
 			{
-				myHelicopter3.draw(x - 320, helicopterY, 1);
+				myHelicopter3.draw(x - 325, helicopterY, 1);
 			}
 
-			if (myCanvasX > 960)
+			if (myCanvasX > 955)
 			{
 				myHelicopter4.draw(x - 480, helicopterY, 1);
 			}
 
-			if (myCanvasX > 1120)
+			if (myCanvasX > 1110)
 			{
-				myHelicopter5.draw(x - 640, helicopterY, 1);
+				myHelicopter5.draw(x - 635, helicopterY, 1);
 			}
 
-			if (myCanvasX > 1280)
+			if (myCanvasX > 1265)
 			{
-				myHelicopter6.draw(x - 800, helicopterY, 1);
+				myHelicopter6.draw(x - 790, helicopterY, 1);
 			}
-
 		}, 50);
 	}
 	else
@@ -1188,13 +1363,15 @@ function drawSecurity(security, x, y, width, floorHeight, floorNumbers)
 
 var form = document.querySelector("form");
 
-form.addEventListener("change", function()
+function draw()
 {
 	if (bigENOUGH)
 	{
 		var width = form.elements.width.value * 10;
 		var floorHeight = 50;
 		var floorNumbers = form.elements.floorNumbers.value;
+		var windowHeight = form.elements.windowHeight.value;
+		var groundFloor = form.elements.groundFloor.value;
 		var color = form.elements.color.value;
 		var type = form.elements.type.value;
 		var show = form.elements.show.value;
@@ -1202,11 +1379,19 @@ form.addEventListener("change", function()
 
 		var x = myCanvasX - 475;
 
-		drawBuilding(x, 550, width, floorHeight, floorNumbers, type, color, show);
+		setColor(color);
+
+		changeMenuColors();
+
+		drawBuilding(x, 550, width, floorHeight, floorNumbers, windowHeight, type, groundFloor, show);
 
 		drawSecurity(security, x, 550, width, floorHeight, floorNumbers);
 	}
-});
+}
+
+draw();
+
+form.addEventListener("change", draw);
 
 </script>
 
