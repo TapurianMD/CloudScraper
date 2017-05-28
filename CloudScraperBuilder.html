@@ -403,10 +403,10 @@ function setColor(color)
 			cameraHolderColor = "grey";
 
 			menuBackgroundColor = "white";
-			menuHeaderColor = "grey";
-			menuItemDescriptionColor = "grey";
+			menuHeaderColor = "darkblue";
+			menuItemDescriptionColor = "darkblue";
 			menuItemOptionColor = "grey";
-			menuItemOptionBorderColor = "darkblue";
+			menuItemOptionBorderColor = "grey";
 			break;
 		case "Hot":
 			buildingWindowColor = "pink";
@@ -758,7 +758,7 @@ function drawRoof(x, y, width, height, type)
 
 function drawFloor(x, y, width, height, windowHeight, floorNumber, show)
 {
-	var pillarDimension = 6 + floorNumber * 1;
+	var pillarDimension = 4 + floorNumber * 1;
 	var tubeDimension = 1 + floorNumber * 0.1;
 	var wireDimension = 1;
 	var elevatorDimension = 25 + (floorNumber * width / 100);
@@ -892,7 +892,7 @@ function drawgroundFloor(x, y, width, height, floorNumber, groundFloor)
 }
 
 
-function drawBuilding(foundationX, foundationY, x, y, floorNumber, windowHeight, type, groundFloor, show)
+function drawBuilding(foundationX, foundationY, x, y, floorNumber, windowHeight, type, groundFloor, color, show)
 {
 	// Clear clouds
 	cx.fillStyle = "white";
@@ -927,6 +927,10 @@ function drawBuilding(foundationX, foundationY, x, y, floorNumber, windowHeight,
 	height = y;
 
 	foundationX = foundationX + (300 - width) / 2;
+
+	setColor(color);
+
+	changeMenuColors();
 
 	drawgroundFloor(foundationX, foundationY, width, height, floorNumber, groundFloor)
 
@@ -1100,7 +1104,7 @@ draw: function(inX, inY, size)
 	}
 
 	// Shaking effect
-	this.y == inY ? this.y += this.shakeSize : this.y -= this.shakeSize;
+	this.y == inY ? this.y = this.y + this.shakeSize : this.y = this.y - this.shakeSize;
 
 	// Rotor
 	cx.beginPath();
@@ -1209,6 +1213,9 @@ var groundPatrol;
 
 function drawSecurity(security, x, y, width, floorHeight, floorNumbers)
 {
+	cx.strokeStyle = "black";
+	cx.fillStyle = "black";
+
 	if (security == "Optimism")
 	{
 		// No security
@@ -1319,7 +1326,7 @@ function drawSecurity(security, x, y, width, floorHeight, floorNumbers)
 		// Patroling
 		airPatrol = setInterval(function()
 		{
-			helicopterY > 65? helicopterY -= 10 : helicopterY;
+			helicopterY > 65? helicopterY = helicopterY - 10 : helicopterY;
 
 			myHelicopter.draw(x + 320, helicopterY, 1);
 
@@ -1347,6 +1354,7 @@ function drawSecurity(security, x, y, width, floorHeight, floorNumbers)
 			{
 				myHelicopter6.draw(x - 790, helicopterY, 1);
 			}
+
 		}, 50);
 	}
 	else
@@ -1379,11 +1387,7 @@ function draw()
 
 		var x = myCanvasX - 475;
 
-		setColor(color);
-
-		changeMenuColors();
-
-		drawBuilding(x, 550, width, floorHeight, floorNumbers, windowHeight, type, groundFloor, show);
+		drawBuilding(x, 550, width, floorHeight, floorNumbers, windowHeight, type, groundFloor, color, show);
 
 		drawSecurity(security, x, 550, width, floorHeight, floorNumbers);
 	}
